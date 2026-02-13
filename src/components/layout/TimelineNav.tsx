@@ -56,16 +56,16 @@ export function TimelineNav() {
   }, [])
 
   return (
-    <nav className="fixed left-0 top-0 z-40 hidden h-screen w-[72px] flex-col items-center justify-center md:flex">
-      {/* Vertical track (background line) */}
-      <div ref={trackRef} className="relative flex flex-col items-center gap-0">
-        {/* The connecting line — full height of the dots area */}
+    <nav className="pointer-events-none fixed left-0 top-0 z-40 hidden h-screen w-24 flex-col items-center justify-center md:flex">
+      {/* Vertical track */}
+      <div ref={trackRef} className="relative flex flex-col items-center">
+        {/* The connecting line — spans the full dot area */}
         <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2">
           {/* Background line */}
-          <div className="h-full w-full bg-border" />
+          <div className="h-full w-full bg-text-dim/25" />
           {/* Progress fill */}
           <div
-            className="absolute left-0 top-0 w-full bg-accent transition-all duration-300 ease-luxury"
+            className="absolute left-0 top-0 w-full bg-accent/70 transition-all duration-300 ease-luxury"
             style={{ height: `${scrollProgress * 100}%` }}
           />
         </div>
@@ -79,26 +79,26 @@ export function TimelineNav() {
             <a
               key={section.id}
               href={`#${section.id}`}
-              className="group relative flex flex-col items-center py-3"
+              className="group pointer-events-auto relative flex flex-col items-center py-5"
               aria-label={`Go to ${section.label}`}
             >
               {/* Dot */}
               <div
-                className={`relative z-10 flex h-2 w-2 items-center justify-center rounded-full transition-all duration-500 ease-luxury ${
+                className={`relative z-10 rounded-full transition-all duration-500 ease-luxury ${
                   isActive
-                    ? 'scale-125 bg-accent shadow-lg shadow-accent/30'
+                    ? 'h-2.5 w-2.5 bg-accent shadow-lg shadow-accent/40'
                     : isPast
-                      ? 'bg-accent/60'
-                      : 'bg-border-subtle'
+                      ? 'h-2 w-2 bg-accent/50'
+                      : 'h-1.5 w-1.5 bg-text-dim/40'
                 }`}
               />
 
               {/* Label — appears on hover or when active */}
               <span
-                className={`mt-1.5 whitespace-nowrap font-mono text-[9px] tracking-wider transition-all duration-500 ${
+                className={`mt-2 whitespace-nowrap font-mono text-[9px] tracking-wider transition-all duration-500 ${
                   isActive
                     ? 'text-accent opacity-100'
-                    : 'text-text-dim opacity-0 group-hover:opacity-100'
+                    : 'text-text-dim opacity-0 group-hover:opacity-70'
                 }`}
               >
                 {section.label}

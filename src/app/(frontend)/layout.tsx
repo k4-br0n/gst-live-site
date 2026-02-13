@@ -13,10 +13,8 @@ export default function FrontendLayout({
     <SmoothScroll>
       <Header />
       <TimelineNav />
-      <main className="md:ml-[72px]">{children}</main>
-      <div className="md:ml-[72px]">
-        <Footer />
-      </div>
+      <main>{children}</main>
+      <Footer />
     </SmoothScroll>
   )
 }

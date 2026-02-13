@@ -18,7 +18,7 @@ export function Header() {
   return (
     <>
       {/* ── Minimal top bar ────────────────────────────────────── */}
-      <header className="fixed left-0 right-0 top-0 z-50 px-6 py-5 md:pl-[84px] md:pr-12">
+      <header className="fixed left-0 right-0 top-0 z-50 px-6 py-5 md:px-12">
         <div className="flex items-center justify-between">
           <Link
             href="/"

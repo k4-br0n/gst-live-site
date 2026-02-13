@@ -7,6 +7,7 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
+import { Homepage } from './globals/Homepage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -19,6 +20,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Pages],
+  globals: [Homepage],
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
