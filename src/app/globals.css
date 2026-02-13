@@ -8,30 +8,29 @@
   }
 
   body {
-    @apply bg-surface-dark text-text-on-dark;
+    @apply bg-surface text-text-muted;
   }
 
-  /* Fluid display typography */
+  /* Fluid display typography — geometric sans, tight tracking */
   h1 {
-    font-size: clamp(2.5rem, 5vw, 8.8rem);
-    letter-spacing: -0.03em;
+    font-size: clamp(2.5rem, 5vw, 6rem);
+    letter-spacing: -0.04em;
     line-height: 1.05;
+    @apply font-sans font-semibold text-text;
   }
 
   h2 {
-    font-size: clamp(1.8rem, 3.5vw, 4.5rem);
-    letter-spacing: -0.02em;
+    font-size: clamp(1.8rem, 3.5vw, 3.5rem);
+    letter-spacing: -0.03em;
     line-height: 1.1;
+    @apply font-sans font-semibold text-text;
   }
 
   h3 {
-    font-size: clamp(1.2rem, 2vw, 2rem);
-    letter-spacing: -0.015em;
+    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+    letter-spacing: -0.02em;
     line-height: 1.2;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-normal;
+    @apply font-sans font-medium text-text;
   }
 
   /* Prevent GSAP-animated elements from flashing before animation */
@@ -41,7 +40,7 @@
 }
 
 @layer components {
-  /* Noise texture overlay — applied via pseudo-element */
+  /* Noise texture overlay — reduced opacity for zinc surfaces */
   .noise-overlay {
     position: relative;
     isolation: isolate;
@@ -53,25 +52,28 @@
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    opacity: 0.04;
+    opacity: 0.03;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-repeat: repeat;
     background-size: 200px 200px;
   }
 
-  /* Section padding standard — generous whitespace */
-  .section-padding {
-    @apply px-6 py-24 md:px-12 md:py-32 lg:py-40;
+  /* Dot-grid background pattern — subtle, architectural */
+  .grid-pattern {
+    background-image: radial-gradient(circle, #27272a 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 
-  /* Container — max width with auto margins */
-  .container-luxury {
-    @apply mx-auto max-w-7xl;
+  /* Line-grid background pattern — alternative */
+  .line-grid {
+    background-image:
+      linear-gradient(to right, #27272a 1px, transparent 1px),
+      linear-gradient(to bottom, #27272a 1px, transparent 1px);
+    background-size: 64px 64px;
   }
 }
 
 @layer utilities {
-  /* Custom easing for transitions */
   .ease-luxury {
     transition-timing-function: cubic-bezier(0.13, 0.875, 0.455, 0.97);
   }
