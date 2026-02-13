@@ -14,24 +14,30 @@ type Props = {
   stagger?: number
   /** 'scroll' = animate when scrolled into view, 'load' = animate immediately on mount */
   trigger?: 'scroll' | 'load'
+  /** HTML tag to render */
+  as?: keyof JSX.IntrinsicElements
 }
 
 const fromVars: Record<AnimationType, gsap.TweenVars> = {
-  'fade-up': { autoAlpha: 0, y: 40 },
+  'fade-up': { autoAlpha: 0, y: 50 },
   'fade-in': { autoAlpha: 0 },
-  'slide-left': { autoAlpha: 0, x: -60 },
-  'slide-right': { autoAlpha: 0, x: 60 },
-  'scale-up': { autoAlpha: 0, scale: 0.95 },
+  'slide-left': { autoAlpha: 0, x: -80 },
+  'slide-right': { autoAlpha: 0, x: 80 },
+  'scale-up': { autoAlpha: 0, scale: 0.92 },
 }
+
+// Quiet Luxury easing — slow, weighted, physical
+const LUXURY_EASE = 'power2.out'
 
 export function AnimatedSection({
   children,
   className = '',
   animation = 'fade-up',
   delay = 0,
-  duration = 0.9,
-  stagger = 0.15,
+  duration = 1.2,
+  stagger = 0.08,
   trigger = 'scroll',
+  as: Tag = 'div',
 }: Props) {
   const container = useRef<HTMLDivElement>(null)
 
@@ -46,7 +52,7 @@ export function AnimatedSection({
         duration,
         delay,
         stagger,
-        ease: 'power3.out',
+        ease: LUXURY_EASE,
       }
 
       if (trigger === 'scroll') {
@@ -63,8 +69,9 @@ export function AnimatedSection({
   )
 
   return (
-    <div ref={container} className={className}>
+    // @ts-expect-error — dynamic tag with ref
+    <Tag ref={container} className={className}>
       {children}
-    </div>
+    </Tag>
   )
 }

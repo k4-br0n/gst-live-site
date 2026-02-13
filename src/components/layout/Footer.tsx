@@ -1,52 +1,47 @@
 import Link from 'next/link'
 
-const footerLinks = {
-  Product: ['Features', 'Pricing', 'Documentation', 'Changelog'],
-  Company: ['About', 'Blog', 'Careers', 'Contact'],
-  Legal: ['Privacy', 'Terms', 'Cookies'],
-}
+const footerLinks = [
+  { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Work', href: '#work' },
+  { label: 'Contact', href: '#contact' },
+]
 
 export function Footer() {
   return (
-    <footer className="bg-gray-950 text-gray-400">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="text-xl font-bold text-white">
-              GST<span className="text-brand-400">.</span>
+    <footer className="bg-surface-dark noise-overlay text-text-light">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
+        <div className="grid gap-16 lg:grid-cols-2">
+          {/* Left — Brand */}
+          <div>
+            <Link href="/" className="font-serif text-3xl tracking-tight text-white">
+              GST
             </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed">
-              Beautiful, high-performance websites built with modern tools and
-              a focus on design quality.
+            <p className="mt-8 max-w-sm text-base leading-relaxed text-text-light/60">
+              High-performance digital experiences built with restraint,
+              precision, and an obsession with craft.
             </p>
           </div>
 
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title}>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
-                {title}
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-sm transition-colors hover:text-white"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Right — Links */}
+          <div className="flex flex-col justify-between lg:items-end">
+            <nav className="flex flex-wrap gap-8 lg:gap-12">
+              {footerLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm uppercase tracking-widest text-text-light/50 transition-colors duration-500 hover:text-white"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
         </div>
 
-        <div className="mt-16 border-t border-gray-800 pt-8 text-center text-sm">
-          <p>
-            &copy; {new Date().getFullYear()} Your Company. All rights
-            reserved.
-          </p>
+        {/* Bottom divider */}
+        <div className="mt-24 border-t border-white/10 pt-8 text-sm text-text-light/30">
+          <p>&copy; {new Date().getFullYear()} GST. All rights reserved.</p>
         </div>
       </div>
     </footer>
