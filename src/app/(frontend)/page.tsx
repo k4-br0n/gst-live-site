@@ -1,5 +1,7 @@
 import { ArrowRight, Check, X } from 'lucide-react'
 import { AnimatedSection } from '@/components/animations/AnimatedSection'
+import { AgitationSection } from '@/components/AgitationSection'
+import { ImagePlaceholder } from '@/components/ui/ImagePlaceholder'
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -119,41 +121,72 @@ export default function HomePage() {
   return (
     <>
       {/* ━━ 01 · HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="hero" className="section-full relative bg-surface">
-        <div className="mx-auto w-full max-w-5xl">
-          <AnimatedSection trigger="load" stagger={0.15} duration={1.4}>
+      <section id="hero" className="section-full">
+        <div className="mx-auto w-full max-w-4xl text-center">
+          <AnimatedSection trigger="load" stagger={0.12} duration={1.2}>
             <p className="font-mono text-xs tracking-wider text-accent">
               // FOR_B2B_TECH_COMPANIES
             </p>
 
-            <h1 className="mt-8 max-w-4xl" style={{ fontSize: 'clamp(2.8rem, 6vw, 7rem)' }}>
-              You&rsquo;ve built a great product.
-            </h1>
             <h1
-              className="max-w-4xl text-text-muted"
-              style={{ fontSize: 'clamp(2.8rem, 6vw, 7rem)' }}
+              className="mt-10 leading-[1.1] text-text"
+              style={{ fontSize: 'clamp(2.5rem, 5.5vw, 5.5rem)' }}
             >
-              Now you need an engine to sell it.
+              <span className="whitespace-nowrap">You&rsquo;ve built something great.</span>
+              <br />
+              <span>
+                Now build the engine
+                <br />
+                to sell it.
+              </span>
             </h1>
 
-            <p className="mt-10 max-w-lg text-lg leading-relaxed text-text-muted">
-              I build repeatable acquisition systems for B2B tech founders who are tired of
-              hoping referrals will carry them to the next stage.
-            </p>
+            <div className="mx-auto mt-6 h-px max-w-12 bg-accent/60" aria-hidden />
 
-            <a
-              href="#contact"
-              className="group mt-12 inline-flex items-center gap-3 rounded-sm border border-accent bg-accent px-6 py-3.5 font-mono text-sm tracking-wider text-surface transition-all duration-500 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/10"
-            >
-              Book a Discovery Call
-              <ArrowRight className="h-4 w-4 transition-transform duration-700 ease-luxury group-hover:translate-x-1" />
-            </a>
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-text-muted [text-wrap:balance]">
+              I embed with B2B tech firms to build their go-to-market system. Strategy,
+              pages, automation, outreach — I do the thinking and the building.
+            </p>
+          </AnimatedSection>
+
+          <a
+            href="#contact"
+            className="group mt-10 inline-flex items-center gap-3 rounded-sm border border-accent bg-accent px-6 py-3.5 font-mono text-sm tracking-wider text-surface opacity-0 animate-fade-in transition-all duration-500 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/10 [animation-delay:1.5s]"
+          >
+            Book a Discovery Call
+            <ArrowRight className="h-4 w-4 transition-transform duration-700 ease-luxury group-hover:translate-x-1" />
+          </a>
+        </div>
+      </section>
+
+      {/* ━━ 02 · VSL (Video Sales Letter) ━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="vsl" className="section-full">
+        <div className="mx-auto w-full max-w-4xl">
+          <AnimatedSection animation="fade-up">
+            <p className="font-mono text-xs tracking-wider text-text-dim">// WATCH_FIRST</p>
+            <h2 className="mt-6" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.25rem)' }}>
+              The real story behind building a growth engine
+            </h2>
+            <p className="mt-4 text-text-muted">
+              A short video on what actually moves the needle for B2B tech companies.
+            </p>
+          </AnimatedSection>
+          <AnimatedSection animation="fade-up" delay={0.15}>
+            <div className="relative mt-10 aspect-video w-full overflow-hidden rounded-sm border border-border bg-surface-alt/30">
+              <iframe
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
+                title="Video Sales Letter — placeholder"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full"
+              />
+            </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* ━━ 02 · TESTIMONIAL (immediate social proof) ━━━━━━━━━━━━━━ */}
-      <section id="testimonial" className="section-full bg-surface-alt">
+      {/* ━━ 03 · TESTIMONIAL (immediate social proof) ━━━━━━━━━━━━━━ */}
+      <section id="testimonial" className="section-full">
         <div className="mx-auto w-full max-w-4xl">
           <AnimatedSection animation="fade-up">
             <blockquote className="relative">
@@ -181,7 +214,7 @@ export default function HomePage() {
       </section>
 
       {/* ━━ 03 · PROBLEM (validating + categories) ━━━━━━━━━━━━━━━━━ */}
-      <section id="problem" className="section-full bg-surface">
+      <section id="problem" className="section-full">
         <div className="mx-auto w-full max-w-4xl">
           <AnimatedSection animation="fade-up">
             <p className="font-mono text-xs tracking-wider text-text-dim">// THE_PROBLEM</p>
@@ -207,7 +240,7 @@ export default function HomePage() {
       </section>
 
       {/* ━━ 04 · BRIDGE (solution preview + CTA) ━━━━━━━━━━━━━━━━━━━ */}
-      <section id="bridge" className="section-full bg-surface-alt">
+      <section id="bridge" className="section-full">
         <div className="mx-auto w-full max-w-3xl text-center">
           <AnimatedSection animation="fade-up">
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
@@ -242,7 +275,7 @@ export default function HomePage() {
       </section>
 
       {/* ━━ 05 · PATHWAY (service options) ━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="pathway" className="section-full bg-surface">
+      <section id="pathway" className="section-full">
         <div className="mx-auto w-full max-w-4xl">
           <AnimatedSection animation="fade-up">
             <p className="font-mono text-xs tracking-wider text-text-dim">// HOW_IT_WORKS</p>
@@ -268,7 +301,7 @@ export default function HomePage() {
       </section>
 
       {/* ━━ 06 · AGITATION (deeper problem) ━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="agitation" className="section-full bg-surface-alt">
+      <section id="agitation" className="section-full">
         <div className="mx-auto w-full max-w-4xl">
           <AnimatedSection animation="fade-up">
             <p className="font-mono text-xs tracking-wider text-text-dim">
@@ -277,27 +310,7 @@ export default function HomePage() {
             <h2 className="mt-8">You&rsquo;ve already proven your product works.</h2>
           </AnimatedSection>
 
-          <div className="mt-16 space-y-0">
-            {agitationBlocks.map((block, i) => (
-              <AnimatedSection key={i} animation="fade-up" delay={0.1 + i * 0.12}>
-                <div className="flex gap-6 border-t border-border py-10 md:gap-8">
-                  {/* Number column */}
-                  <span className="shrink-0 font-mono text-3xl font-semibold text-border-subtle">
-                    {block.number}
-                  </span>
-                  {/* Content */}
-                  <div className="max-w-xl">
-                    <h3 style={{ fontSize: 'clamp(1.2rem, 2.2vw, 1.6rem)' }}>
-                      {block.heading}
-                    </h3>
-                    <p className="mt-3 leading-relaxed text-text-muted">
-                      {block.description}
-                    </p>
-                  </div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+          <AgitationSection blocks={agitationBlocks} />
 
           <AnimatedSection animation="fade-up" delay={0.5}>
             <div className="mt-10 border-t border-border pt-10">
@@ -315,7 +328,7 @@ export default function HomePage() {
       </section>
 
       {/* ━━ 07 · GUIDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="about" className="section-full bg-surface">
+      <section id="about" className="section-full">
         <div className="mx-auto w-full max-w-4xl">
           <AnimatedSection animation="fade-up">
             <p className="font-mono text-xs tracking-wider text-text-dim">
@@ -331,7 +344,15 @@ export default function HomePage() {
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={0.2}>
-            <p className="mt-8 max-w-2xl text-xl leading-relaxed text-text-muted">
+            <ImagePlaceholder
+              label="WORKING SHOT"
+              className="mt-8 aspect-[4/3] w-full max-w-md"
+              alt="Jorge working — strategy in action"
+            />
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay={0.25}>
+            <p className="mt-10 max-w-2xl text-xl leading-relaxed text-text-muted">
               I&rsquo;m a growth strategist who embeds with small B2B tech firms to build their
               entire go-to-market system. Strategy, landing pages, automation, outreach &mdash;
               end to end. No handoffs. No subcontractors. No &ldquo;here&rsquo;s a strategy
@@ -353,7 +374,7 @@ export default function HomePage() {
       </section>
 
       {/* ━━ 08 · PROOF (case study) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="proof" className="section-full bg-surface-alt">
+      <section id="proof" className="section-full">
         <div className="mx-auto w-full max-w-4xl">
           <AnimatedSection animation="fade-up">
             <p className="font-mono text-xs tracking-wider text-text-dim">// CASE_STUDY</p>
@@ -400,7 +421,7 @@ export default function HomePage() {
       </section>
 
       {/* ━━ 09 · QUALIFIER ("this is for you if…") ━━━━━━━━━━━━━━━━━ */}
-      <section id="qualifier" className="section-full bg-surface">
+      <section id="qualifier" className="section-full">
         <div className="mx-auto w-full max-w-3xl">
           <AnimatedSection animation="fade-up">
             <h2>This is for you if&hellip;</h2>
@@ -439,11 +460,15 @@ export default function HomePage() {
       </section>
 
       {/* ━━ 10 · CONTACT (final CTA) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="contact" className="section-full relative bg-surface-alt">
-        <div className="pointer-events-none absolute -bottom-32 right-0 h-[400px] w-[400px] rounded-full bg-accent/10 blur-[100px]" />
-
-        <div className="relative z-10 mx-auto w-full max-w-3xl text-center">
+      <section id="contact" className="section-full">
+        <div className="mx-auto w-full max-w-3xl text-center">
           <AnimatedSection animation="fade-up">
+            <ImagePlaceholder
+              label="HEADSHOT"
+              shape="circular"
+              className="mx-auto mb-8 h-28 w-28"
+              alt="Jorge — friendly headshot"
+            />
             <p className="font-mono text-xs tracking-wider text-text-dim">// START_HERE</p>
             <h2 className="mt-8" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
               A growth engine running{' '}

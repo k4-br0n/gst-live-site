@@ -45,6 +45,20 @@ const config: Config = {
         '900': '900ms',
         '1200': '1200ms',
       },
+      keyframes: {
+        blink: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+      },
+      animation: {
+        blink: 'blink 1s step-end infinite',
+        'fade-in': 'fade-in 0.8s ease-out forwards',
+      },
     },
   },
   plugins: [],

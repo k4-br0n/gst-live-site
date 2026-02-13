@@ -4,15 +4,16 @@ import { useState, useEffect, useRef } from 'react'
 
 const sections = [
   { number: '01', id: 'hero', label: 'INTRO' },
-  { number: '02', id: 'testimonial', label: 'PROOF' },
-  { number: '03', id: 'problem', label: 'PROBLEM' },
-  { number: '04', id: 'bridge', label: 'BRIDGE' },
-  { number: '05', id: 'pathway', label: 'SYSTEM' },
-  { number: '06', id: 'agitation', label: 'REALITY' },
-  { number: '07', id: 'about', label: 'GUIDE' },
-  { number: '08', id: 'proof', label: 'CASE STUDY' },
-  { number: '09', id: 'qualifier', label: 'FIT' },
-  { number: '10', id: 'contact', label: 'START' },
+  { number: '02', id: 'vsl', label: 'VIDEO' },
+  { number: '03', id: 'testimonial', label: 'PROOF' },
+  { number: '04', id: 'problem', label: 'PROBLEM' },
+  { number: '05', id: 'bridge', label: 'BRIDGE' },
+  { number: '06', id: 'pathway', label: 'SYSTEM' },
+  { number: '07', id: 'agitation', label: 'REALITY' },
+  { number: '08', id: 'about', label: 'GUIDE' },
+  { number: '09', id: 'proof', label: 'CASE STUDY' },
+  { number: '10', id: 'qualifier', label: 'FIT' },
+  { number: '11', id: 'contact', label: 'START' },
 ]
 
 export function TimelineNav() {

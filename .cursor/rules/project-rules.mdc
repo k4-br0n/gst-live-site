@@ -15,9 +15,13 @@ alwaysApply: true
 - **Icons:** Lucide React
 
 ## Template Purpose
-This is a **reusable boilerplate** for landing pages and marketing sites. The home page (`(frontend)/page.tsx`) is a static showcase. CMS-powered pages use the block-based page builder via the catch-all route.
+This is a **reusable boilerplate** for landing pages and marketing sites. The **homepage** (`(frontend)/page.tsx`) is **hardcoded** with a sales-funnel structure — content lives directly in the component, not in the CMS. CMS-powered pages use the block-based page builder via the catch-all route `[...slug]`.
 
-## Block-Based Page Builder
+## Homepage Structure (Hardcoded)
+The homepage follows an 11-section sales funnel. Section IDs must match `TimelineNav`:
+- `hero`, `vsl`, `testimonial`, `problem`, `bridge`, `pathway`, `agitation`, `about`, `proof`, `qualifier`, `contact`
+
+## Block-Based Page Builder (CMS Pages)
 1. **CMS:** `Pages` collection with a `layout` blocks field
 2. **Frontend:** Catch-all route `[...slug]/page.tsx` fetches by slug with `depth: 2`
 3. **Rendering:** `<RenderBlocks />` maps block types to React components
@@ -31,16 +35,36 @@ This is a **reusable boilerplate** for landing pages and marketing sites. The ho
 - **Data fetching:** Always use Payload Local API with `depth: 2` so upload fields resolve to full objects.
 - **Styling:** Tailwind utility classes only. Stick to the design system.
 
-## Animation Rules
-- Import GSAP utilities from `@/lib/gsap` (pre-registers ScrollTrigger)
-- Use `<AnimatedSection>` for scroll-triggered reveals on sections
-- Use `trigger="load"` on AnimatedSection for above-the-fold content
-- Only add `'use client'` to components that need GSAP or interactivity
-- Keep animations subtle: 0.8-1s duration, `power3.out` easing, modest transforms
+## Design System
+- **Colors:** Use semantic tokens only: `bg-surface`, `bg-surface-alt`, `text-text`, `text-text-muted`, `text-text-dim`, `text-accent`, `border-border`, `text-surface` (for button text on accent bg).
+- **Typography:** Sans-serif throughout (`font-sans`). Headings use `font-semibold`; body uses `font-mono` for labels, `font-sans` for prose.
+- **Sections:** Use `section-full` for full-viewport sections (min-h-screen, flex, justify-center).
+- **Layout:** `ScrollAtmosphere` wraps the main layout for scroll-driven background color and ambient glow.
 
-## Adding a New Block
+## Key Components
+- **AnimatedSection** — Scroll/load-triggered reveals. Use `trigger="load"` for above-the-fold.
+- **AgitationSection** — Custom client component for the agitation block with scroll-triggered number color animation.
+- **ImagePlaceholder** — Reusable placeholder for images (dashed border, label). Pass `src` to render a real image.
+- **ScrollAtmosphere** — Scroll-driven background color morph and dynamic glow.
+- **TimelineNav** — Left-side section dots; keep `sections` array in sync with homepage section IDs.
+
+## Animation Rules
+- Import GSAP utilities from `@/lib/gsap` (pre-registers ScrollTrigger).
+- Use `<AnimatedSection>` for scroll-triggered reveals on sections.
+- Use `trigger="load"` on AnimatedSection for above-the-fold content.
+- Only add `'use client'` to components that need GSAP or interactivity.
+- Keep animations subtle: 0.8–1.2s duration, `power2.out` easing, modest transforms.
+- **Critical CTAs (e.g. hero button):** Use CSS animations (`animate-fade-in`, `[animation-delay:1.5s]`) instead of GSAP to avoid visibility issues on client-side navigation.
+- For custom scroll effects (e.g. number color change), use `useGSAP` + `ScrollTrigger` with `once: true`.
+
+## Adding a New Block (CMS)
 1. Create `src/blocks/YourBlock/schema.ts` (Payload Block config)
 2. Create `src/blocks/YourBlock/Component.tsx` (React component)
 3. Register the block in `src/collections/Pages.ts` `layout.blocks` array
 4. Register the component in `src/blocks/RenderBlocks.tsx` map
 5. Run `npm run generate:types`
+
+## Adding a Homepage Section
+1. Add the section to `(frontend)/page.tsx` with the correct `id`.
+2. Add the section to `TimelineNav.tsx` `sections` array (number, id, label).
+3. Update `ScrollAtmosphere` color zones if the page length changes significantly.

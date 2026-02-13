@@ -24,7 +24,14 @@ export function Header({ logoText = 'GST_' }: { logoText?: string }) {
             href="/"
             className="font-mono text-sm tracking-wider text-text-muted transition-colors duration-500 hover:text-text"
           >
-            {logoText}
+            {logoText.endsWith('_') ? (
+              <>
+                {logoText.slice(0, -1)}
+                <span className="animate-blink text-accent">_</span>
+              </>
+            ) : (
+              logoText
+            )}
           </Link>
           <a
             href="#contact"

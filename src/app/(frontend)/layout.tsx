@@ -5,6 +5,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { TimelineNav } from '@/components/layout/TimelineNav'
+import { ScrollAtmosphere } from '@/components/ScrollAtmosphere'
 import type { SiteSettings } from '@/payload-types'
 
 async function getLogoText(): Promise<string> {
@@ -26,10 +27,12 @@ export default async function FrontendLayout({
 
   return (
     <SmoothScroll>
-      <Header logoText={logoText} />
-      <TimelineNav />
-      <main>{children}</main>
-      <Footer logoText={logoText} />
+      <ScrollAtmosphere>
+        <Header logoText={logoText} />
+        <TimelineNav />
+        <main>{children}</main>
+        <Footer logoText={logoText} />
+      </ScrollAtmosphere>
     </SmoothScroll>
   )
 }
