@@ -69,7 +69,6 @@ export function AnimatedSection({
   )
 
   return (
-    // @ts-expect-error — dynamic tag with ref
     <Tag ref={container} className={className}>
       {children}
     </Tag>
