@@ -10,17 +10,19 @@ const config: Config = {
     extend: {
       colors: {
         surface: {
-          DEFAULT: '#F2EDEB',
-          dark: '#242424',
+          DEFAULT: '#F5F0EB',
+          alt: '#EBE5DE',
+          dark: '#1C1C1A',
         },
         text: {
-          DEFAULT: '#221F20',
-          light: '#d2d2d2',
-          muted: '#8a8785',
+          DEFAULT: '#1C1C1A',
+          muted: '#6B6560',
+          'on-dark': '#F5F0EB',
         },
         accent: {
-          DEFAULT: '#dfff00',
-          muted: 'rgba(223, 255, 0, 0.15)',
+          DEFAULT: '#14B8A6',
+          hover: '#0D9488',
+          tint: '#E0FAF5',
         },
       },
       fontFamily: {

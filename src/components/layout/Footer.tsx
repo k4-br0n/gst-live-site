@@ -9,15 +9,15 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-surface-dark noise-overlay text-text-light">
+    <footer className="bg-surface-dark noise-overlay">
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
         <div className="grid gap-16 lg:grid-cols-2">
           {/* Left — Brand */}
           <div>
-            <Link href="/" className="font-serif text-3xl tracking-tight text-white">
+            <Link href="/" className="font-serif text-3xl tracking-tight text-text-on-dark">
               GST
             </Link>
-            <p className="mt-8 max-w-sm text-base leading-relaxed text-text-light/60">
+            <p className="mt-8 max-w-sm text-base leading-relaxed text-text-on-dark/50">
               High-performance digital experiences built with restraint,
               precision, and an obsession with craft.
             </p>
@@ -30,7 +30,7 @@ export function Footer() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-sm uppercase tracking-widest text-text-light/50 transition-colors duration-500 hover:text-white"
+                  className="text-sm uppercase tracking-widest text-text-on-dark/40 transition-colors duration-500 hover:text-accent"
                 >
                   {link.label}
                 </a>
@@ -40,7 +40,7 @@ export function Footer() {
         </div>
 
         {/* Bottom divider */}
-        <div className="mt-24 border-t border-white/10 pt-8 text-sm text-text-light/30">
+        <div className="mt-24 border-t border-text-on-dark/10 pt-8 text-sm text-text-on-dark/30">
           <p>&copy; {new Date().getFullYear()} GST. All rights reserved.</p>
         </div>
       </div>

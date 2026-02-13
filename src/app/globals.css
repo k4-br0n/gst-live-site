@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-surface text-text;
+    @apply bg-surface-dark text-text-on-dark;
   }
 
   /* Fluid display typography */
