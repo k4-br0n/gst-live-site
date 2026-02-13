@@ -224,7 +224,7 @@ export default function HomePage() {
             <p className="mt-4 text-lg text-text-muted">You need help with&hellip;</p>
           </AnimatedSection>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-6 md:grid-cols-3 3xl:mt-10">
             {problemCategories.map((cat, i) => (
               <AnimatedSection key={i} animation="fade-up" delay={i * 0.1}>
                 <div className="border-t border-border pt-6">
@@ -282,7 +282,7 @@ export default function HomePage() {
             <h2 className="mt-8">Three phases. One system.</h2>
           </AnimatedSection>
 
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
+          <div className="mt-16 grid gap-8 md:grid-cols-3 3xl:mt-10 3xl:gap-6">
             {pathwaySteps.map((step, i) => (
               <AnimatedSection key={i} animation="fade-up" delay={i * 0.1}>
                 <div className="relative border-t border-border pt-6">
@@ -313,7 +313,7 @@ export default function HomePage() {
           <AgitationSection blocks={agitationBlocks} />
 
           <AnimatedSection animation="fade-up" delay={0.5}>
-            <div className="mt-10 border-t border-border pt-10">
+            <div className="mt-10 border-t border-border pt-10 3xl:pt-8">
               <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
                 That&rsquo;s the gap I help close.
               </h2>
@@ -361,7 +361,7 @@ export default function HomePage() {
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={0.3}>
-            <div className="mt-14 grid gap-6 md:grid-cols-3">
+            <div className="mt-14 grid gap-6 md:grid-cols-3 3xl:mt-10">
               {advantages.map((item, i) => (
                 <div key={i} className="border-t border-border pt-6">
                   <p className="font-mono text-xs tracking-wider text-accent">{item.label}</p>
@@ -384,7 +384,7 @@ export default function HomePage() {
 
           {/* Before */}
           <AnimatedSection animation="fade-up" delay={0.15}>
-            <div className="mt-16 border-t border-border pt-8">
+            <div className="mt-16 border-t border-border pt-8 3xl:mt-10 3xl:pt-6">
               <p className="font-mono text-xs tracking-wider text-text-dim">BEFORE</p>
               <ul className="mt-6 space-y-3">
                 {caseStudy.problems.map((p, i) => (
@@ -399,7 +399,7 @@ export default function HomePage() {
 
           {/* After */}
           <AnimatedSection animation="fade-up" delay={0.25}>
-            <div className="mt-12 border-t border-border pt-8">
+            <div className="mt-12 border-t border-border pt-8 3xl:mt-8 3xl:pt-6">
               <p className="font-mono text-xs tracking-wider text-accent">AFTER</p>
               <ul className="mt-6 space-y-3">
                 {caseStudy.built.map((b, i) => (
@@ -427,7 +427,7 @@ export default function HomePage() {
             <h2>This is for you if&hellip;</h2>
           </AnimatedSection>
 
-          <div className="mt-12 space-y-5">
+          <div className="mt-12 space-y-5 3xl:mt-10">
             {qualifierItems.map((item, i) => (
               <AnimatedSection key={i} animation="fade-up" delay={i * 0.06}>
                 <div className="flex items-start gap-4">
@@ -439,7 +439,7 @@ export default function HomePage() {
           </div>
 
           <AnimatedSection animation="fade-up" delay={0.5}>
-            <div className="mt-16 border-t border-border pt-10">
+            <div className="mt-16 border-t border-border pt-10 3xl:mt-10 3xl:pt-8">
               <h3 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)' }}>
                 You don&rsquo;t need another quick fix.
               </h3>

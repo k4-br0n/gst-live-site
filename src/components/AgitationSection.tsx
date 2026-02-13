@@ -43,14 +43,14 @@ export function AgitationSection({ blocks }: { blocks: Block[] }) {
   )
 
   return (
-    <div ref={container} className="mt-16 space-y-0">
+    <div ref={container} className="mt-16 space-y-0 3xl:mt-10">
       {blocks.map((block, i) => (
         <AnimatedSection key={i} animation="fade-up" delay={0.1 + i * 0.12}>
           <div
             ref={(el) => {
               blockRefs.current[i] = el
             }}
-            className="flex gap-6 border-t border-border py-10 md:gap-8"
+            className="flex gap-6 border-t border-border py-10 md:gap-8 3xl:py-6"
           >
             <span
               data-agitation-number
