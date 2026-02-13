@@ -10,23 +10,23 @@ const config: Config = {
     extend: {
       colors: {
         surface: {
-          DEFAULT: '#09090b',   // zinc-950 — absolute dark base
-          alt: '#18181b',       // zinc-900 — elevated cards/sections
-          light: '#fafafa',     // zinc-50 — rare contrast sections
+          DEFAULT: 'var(--color-surface, #09090b)',
+          alt: 'var(--color-surface-alt, #18181b)',
+          light: '#fafafa',
         },
         text: {
-          DEFAULT: '#fafaf9',   // zinc-50 — headings
-          muted: '#a1a1aa',     // zinc-400 — body copy
-          dim: '#52525b',       // zinc-600 — subtle labels
+          DEFAULT: 'var(--color-text, #fafaf9)',
+          muted: 'var(--color-text-muted, #a1a1aa)',
+          dim: 'var(--color-text-dim, #52525b)',
         },
         accent: {
-          DEFAULT: '#14B8A6',   // teal — terminal cyan
-          hover: '#0D9488',     // teal darker
-          glow: 'rgba(20, 184, 166, 0.15)', // for glow effects
+          DEFAULT: 'var(--color-accent, #14B8A6)',
+          hover: 'var(--color-accent-hover, #0D9488)',
+          glow: 'var(--color-accent-glow, rgba(20, 184, 166, 0.15))',
         },
         border: {
-          DEFAULT: '#27272a',   // zinc-800 — primary borders
-          subtle: '#3f3f46',    // zinc-700 — hover borders
+          DEFAULT: 'var(--color-border, #27272a)',
+          subtle: '#3f3f46',
         },
       },
       fontFamily: {

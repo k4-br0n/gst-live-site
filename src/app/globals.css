@@ -60,15 +60,15 @@
 
   /* Dot-grid background pattern — subtle, architectural */
   .grid-pattern {
-    background-image: radial-gradient(circle, #27272a 1px, transparent 1px);
+    background-image: radial-gradient(circle, var(--color-border, #27272a) 1px, transparent 1px);
     background-size: 32px 32px;
   }
 
   /* Line-grid background pattern — alternative */
   .line-grid {
     background-image:
-      linear-gradient(to right, #27272a 1px, transparent 1px),
-      linear-gradient(to bottom, #27272a 1px, transparent 1px);
+      linear-gradient(to right, var(--color-border, #27272a) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-border, #27272a) 1px, transparent 1px);
     background-size: 64px 64px;
   }
 }

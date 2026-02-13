@@ -12,7 +12,7 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ]
 
-export function Header() {
+export function Header({ logoText = 'GST_' }: { logoText?: string }) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
   return (
@@ -24,7 +24,7 @@ export function Header() {
             href="/"
             className="font-mono text-sm tracking-wider text-text-muted transition-colors duration-500 hover:text-text"
           >
-            GST_
+            {logoText}
           </Link>
           <a
             href="#contact"

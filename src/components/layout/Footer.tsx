@@ -7,14 +7,14 @@ const footerLinks = [
   { label: 'Contact', href: '#contact' },
 ]
 
-export function Footer() {
+export function Footer({ logoText = 'GST_' }: { logoText?: string }) {
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
         <div className="grid gap-16 lg:grid-cols-2">
           <div>
             <Link href="/" className="font-mono text-xl tracking-wider text-text">
-              GST_
+              {logoText}
             </Link>
             <p className="mt-8 max-w-sm text-base leading-relaxed text-text-dim">
               High-performance digital systems built with precision

@@ -8,6 +8,7 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Homepage } from './globals/Homepage'
+import { SiteSettings } from './globals/SiteSettings'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -20,7 +21,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Pages],
-  globals: [Homepage],
+  globals: [Homepage, SiteSettings],
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
