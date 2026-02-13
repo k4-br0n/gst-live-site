@@ -1,5 +1,8 @@
+'use client'
+
 import React from 'react'
 import * as LucideIcons from 'lucide-react'
+import { AnimatedSection } from '@/components/animations/AnimatedSection'
 
 type Feature = {
   icon?: string
@@ -16,57 +19,68 @@ type Props = {
 
 function getIcon(name?: string) {
   if (!name) return null
-
-  // Attempt to resolve the Lucide icon by name
   const Icon = (LucideIcons as Record<string, any>)[name]
   if (Icon && typeof Icon === 'function') {
-    return <Icon className="h-6 w-6" />
+    return <Icon className="h-5 w-5" />
   }
-
   return null
 }
 
 export function FeaturesBlock({ heading, subtitle, features }: Props) {
-  const gridCols =
-    features.length <= 2
-      ? 'sm:grid-cols-2'
-      : features.length === 3
-        ? 'sm:grid-cols-2 lg:grid-cols-3'
-        : 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-
   return (
-    <section className="bg-white py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+    <section className="noise-overlay bg-surface-dark">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-40">
+        <AnimatedSection animation="fade-up" duration={1.2}>
+          <p className="text-sm font-medium uppercase tracking-widest text-text-on-dark/50">
+            Capabilities
+          </p>
+          <h2 className="mt-6 max-w-3xl font-serif text-text-on-dark">
             {heading}
           </h2>
           {subtitle && (
-            <p className="mt-4 text-lg text-gray-600">{subtitle}</p>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-text-on-dark/60">
+              {subtitle}
+            </p>
           )}
-        </div>
+        </AnimatedSection>
 
-        <div className={`mt-16 grid gap-8 ${gridCols}`}>
+        {/* Numbered list with architectural grid lines */}
+        <div className="mt-20">
           {features?.map((feature, index) => {
             const icon = getIcon(feature.icon)
+            const number = String(index + 1).padStart(2, '0')
 
             return (
-              <div
+              <AnimatedSection
                 key={feature.id || index}
-                className="rounded-xl border border-gray-100 bg-gray-50 p-8 transition-shadow hover:shadow-md"
+                animation="fade-up"
+                delay={index * 0.06}
+                duration={1}
               >
-                {icon && (
-                  <div className="mb-4 inline-flex rounded-lg bg-brand-100 p-3 text-brand-600">
-                    {icon}
+                <div className="border-t border-text-on-dark/10 py-10 md:py-14">
+                  <div className="grid gap-4 md:grid-cols-12 md:items-start md:gap-8">
+                    {/* Number */}
+                    <span className="text-sm text-text-on-dark/30 md:col-span-1">
+                      {number}
+                    </span>
+
+                    {/* Title + optional icon */}
+                    <div className="flex items-center gap-3 md:col-span-3">
+                      {icon && (
+                        <span className="text-accent">{icon}</span>
+                      )}
+                      <h3 className="font-serif text-text-on-dark">
+                        {feature.title}
+                      </h3>
+                    </div>
+
+                    {/* Description */}
+                    <p className="leading-relaxed text-text-on-dark/60 md:col-span-8">
+                      {feature.description}
+                    </p>
                   </div>
-                )}
-                <h3 className="text-xl font-semibold text-gray-900">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 leading-relaxed text-gray-600">
-                  {feature.description}
-                </p>
-              </div>
+                </div>
+              </AnimatedSection>
             )
           })}
         </div>

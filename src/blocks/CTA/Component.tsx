@@ -1,6 +1,9 @@
+'use client'
+
 import React from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { AnimatedSection } from '@/components/animations/AnimatedSection'
 
 type Props = {
   heading: string
@@ -17,69 +20,51 @@ export function CTABlock({
   buttonLink,
   style = 'default',
 }: Props) {
-  if (style === 'banner') {
-    return (
-      <section className="bg-brand-600 py-16">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-6 text-center sm:flex-row sm:text-left">
-          <div>
-            <h2 className="text-3xl font-bold text-white">{heading}</h2>
-            {description && (
-              <p className="mt-2 text-lg text-brand-100">{description}</p>
-            )}
-          </div>
-          <Link
-            href={buttonLink}
-            className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-white px-8 py-3.5 text-lg font-semibold text-brand-600 shadow-sm transition-colors hover:bg-brand-50"
-          >
-            {buttonText}
-            <ArrowRight className="h-5 w-5" />
-          </Link>
-        </div>
-      </section>
-    )
-  }
-
   if (style === 'minimal') {
     return (
-      <section className="py-16">
-        <div className="mx-auto max-w-2xl px-6 text-center">
-          <h2 className="text-2xl font-bold text-gray-900">{heading}</h2>
-          {description && (
-            <p className="mt-3 text-gray-600">{description}</p>
-          )}
-          <div className="mt-8">
-            <Link
-              href={buttonLink}
-              className="inline-flex items-center gap-1 text-lg font-semibold text-brand-600 transition-colors hover:text-brand-700"
-            >
-              {buttonText}
-              <ArrowRight className="h-5 w-5" />
-            </Link>
-          </div>
+      <section className="noise-overlay bg-surface py-24 md:py-32">
+        <div className="mx-auto max-w-4xl px-6 text-center md:px-12">
+          <AnimatedSection animation="fade-up" duration={1.2}>
+            <h2 className="font-serif text-text">{heading}</h2>
+            {description && (
+              <p className="mt-6 text-lg text-text-muted">{description}</p>
+            )}
+            <div className="mt-12">
+              <Link
+                href={buttonLink}
+                className="group inline-flex items-center gap-3 text-sm font-medium uppercase tracking-widest text-text transition-colors duration-500 hover:text-accent"
+              >
+                {buttonText}
+                <ArrowRight className="h-4 w-4 transition-transform duration-700 ease-luxury group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
     )
   }
 
-  // Default style
+  // Default and banner styles — large, typography-led, dark background
   return (
-    <section className="bg-gray-50 py-24">
-      <div className="mx-auto max-w-3xl px-6 text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          {heading}
-        </h2>
-        {description && (
-          <p className="mt-4 text-xl text-gray-600">{description}</p>
-        )}
-        <div className="mt-10">
-          <Link
-            href={buttonLink}
-            className="inline-flex items-center gap-2 rounded-lg bg-brand-600 px-8 py-3.5 text-lg font-semibold text-white shadow-sm transition-colors hover:bg-brand-700"
-          >
-            {buttonText}
-            <ArrowRight className="h-5 w-5" />
-          </Link>
-        </div>
+    <section className="noise-overlay bg-surface-dark">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-32 md:px-12 md:py-48">
+        <AnimatedSection animation="fade-up" duration={1.4}>
+          <h2 className="max-w-4xl font-serif text-text-on-dark">{heading}</h2>
+          {description && (
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-text-on-dark/60 md:text-xl">
+              {description}
+            </p>
+          )}
+          <div className="mt-16">
+            <Link
+              href={buttonLink}
+              className="group inline-flex items-center gap-3 rounded-full border border-accent/30 bg-accent px-8 py-4 text-sm font-medium uppercase tracking-widest text-surface-dark transition-all duration-500 hover:bg-accent-hover hover:shadow-lg"
+            >
+              {buttonText}
+              <ArrowRight className="h-4 w-4 transition-transform duration-700 ease-luxury group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   )

@@ -1,5 +1,7 @@
+'use client'
+
 import React from 'react'
-import { Quote } from 'lucide-react'
+import { AnimatedSection } from '@/components/animations/AnimatedSection'
 
 type Testimonial = {
   quote: string
@@ -19,54 +21,58 @@ type Props = {
 }
 
 export function TestimonialsBlock({ heading, testimonials }: Props) {
-  const gridCols =
-    testimonials.length === 1
-      ? 'max-w-2xl mx-auto'
-      : testimonials.length === 2
-        ? 'sm:grid-cols-2 max-w-4xl mx-auto'
-        : 'sm:grid-cols-2 lg:grid-cols-3'
-
   return (
-    <section className="bg-gray-50 py-24">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="noise-overlay bg-surface">
+      <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-40">
         {heading && (
-          <h2 className="mb-16 text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            {heading}
-          </h2>
+          <AnimatedSection animation="fade-up" duration={1.2}>
+            <p className="text-sm font-medium uppercase tracking-widest text-text-muted">
+              Testimonials
+            </p>
+            <h2 className="mt-6 font-serif text-text">{heading}</h2>
+          </AnimatedSection>
         )}
 
-        <div className={`grid gap-8 ${gridCols}`}>
+        <div className="mt-20 space-y-0">
           {testimonials?.map((testimonial, index) => (
-            <div
+            <AnimatedSection
               key={testimonial.id || index}
-              className="flex flex-col rounded-2xl bg-white p-8 shadow-sm"
+              animation="fade-up"
+              delay={index * 0.08}
+              duration={1.2}
             >
-              <Quote className="mb-4 h-8 w-8 text-brand-200" />
-              <blockquote className="flex-1 text-lg leading-relaxed text-gray-700">
-                &ldquo;{testimonial.quote}&rdquo;
-              </blockquote>
-              <div className="mt-6 flex items-center gap-4 border-t border-gray-100 pt-6">
-                {testimonial.avatar?.url && (
-                  <img
-                    src={testimonial.avatar.url}
-                    alt={testimonial.avatar.alt || testimonial.author}
-                    className="h-12 w-12 rounded-full object-cover"
-                  />
-                )}
-                <div>
-                  <p className="font-semibold text-gray-900">
-                    {testimonial.author}
-                  </p>
-                  {(testimonial.role || testimonial.company) && (
-                    <p className="text-sm text-gray-500">
-                      {[testimonial.role, testimonial.company]
-                        .filter(Boolean)
-                        .join(' at ')}
-                    </p>
-                  )}
+              <div className="border-t border-text/10 py-12 md:py-16">
+                <div className="grid gap-8 md:grid-cols-12">
+                  {/* Quote — typography-led, large */}
+                  <blockquote className="font-serif text-text md:col-span-8" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2rem)', lineHeight: 1.3 }}>
+                    &ldquo;{testimonial.quote}&rdquo;
+                  </blockquote>
+
+                  {/* Attribution */}
+                  <div className="flex items-start gap-4 md:col-span-4 md:justify-end">
+                    {testimonial.avatar?.url && (
+                      <img
+                        src={testimonial.avatar.url}
+                        alt={testimonial.avatar.alt || testimonial.author}
+                        className="h-12 w-12 rounded-full object-cover"
+                      />
+                    )}
+                    <div>
+                      <p className="text-sm font-medium text-text">
+                        {testimonial.author}
+                      </p>
+                      {(testimonial.role || testimonial.company) && (
+                        <p className="mt-1 text-sm text-text-muted">
+                          {[testimonial.role, testimonial.company]
+                            .filter(Boolean)
+                            .join(', ')}
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
           ))}
         </div>
       </div>

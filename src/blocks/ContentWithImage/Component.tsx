@@ -1,4 +1,8 @@
-import React from 'react'
+'use client'
+
+import React, { useRef } from 'react'
+import { gsap, useGSAP } from '@/lib/gsap'
+import { AnimatedSection } from '@/components/animations/AnimatedSection'
 
 type Props = {
   heading: string
@@ -16,26 +20,67 @@ export function ContentWithImageBlock({
   image,
   imagePosition = 'right',
 }: Props) {
+  const imageRef = useRef<HTMLDivElement>(null)
+
+  // Subtle parallax on the image
+  useGSAP(() => {
+    if (!imageRef.current) return
+
+    gsap.fromTo(
+      imageRef.current.querySelector('img'),
+      { yPercent: -8 },
+      {
+        yPercent: 8,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: imageRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      },
+    )
+  }, { scope: imageRef })
+
   return (
-    <section className="bg-white py-24">
+    <section className="noise-overlay bg-surface">
       <div
-        className={`mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16 ${
+        className={`mx-auto grid max-w-7xl items-center gap-16 px-6 py-24 md:px-12 md:py-40 lg:grid-cols-2 lg:gap-24 ${
           imagePosition === 'left' ? 'lg:[&>*:first-child]:order-2' : ''
         }`}
       >
-        <div>
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            {heading}
-          </h2>
-          <div className="mt-6 space-y-4 text-lg leading-relaxed text-gray-600">
-            {/* Render rich text - simplified for now, replace with Payload's serializer */}
+        {/* Text column */}
+        <AnimatedSection animation="fade-up" duration={1.2}>
+          <h2 className="font-serif text-text">{heading}</h2>
+          <div className="mt-8 space-y-6 text-lg leading-relaxed text-text-muted">
             {content && typeof content === 'object' && content.root?.children ? (
               content.root.children.map((node: any, i: number) => {
                 if (node.type === 'paragraph') {
-                  const text = node.children
-                    ?.map((child: any) => child.text || '')
-                    .join('')
-                  return text ? <p key={i}>{text}</p> : null
+                  return (
+                    <p key={i}>
+                      {node.children?.map((child: any, j: number) => {
+                        let text = child.text || ''
+                        if (!text) return null
+                        if (child.format === 1) return <strong key={j} className="text-text">{text}</strong>
+                        if (child.format === 2) return <em key={j}>{text}</em>
+                        return <React.Fragment key={j}>{text}</React.Fragment>
+                      })}
+                    </p>
+                  )
+                }
+                if (node.type === 'list' && node.listType === 'bullet') {
+                  return (
+                    <ul key={i} className="space-y-2 pl-0">
+                      {node.children?.map((li: any, k: number) => (
+                        <li key={k} className="flex items-start gap-3">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                          <span>
+                            {li.children?.[0]?.children?.map((c: any) => c.text).join('') || ''}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  )
                 }
                 return null
               })
@@ -43,15 +88,19 @@ export function ContentWithImageBlock({
               <p>{String(content || '')}</p>
             )}
           </div>
-        </div>
+        </AnimatedSection>
+
+        {/* Image column — with parallax */}
         {image?.url && (
-          <div className="overflow-hidden rounded-2xl">
-            <img
-              src={image.url}
-              alt={image.alt || ''}
-              className="h-full w-full object-cover"
-            />
-          </div>
+          <AnimatedSection animation="fade-up" delay={0.15} duration={1.2}>
+            <div ref={imageRef} className="overflow-hidden">
+              <img
+                src={image.url}
+                alt={image.alt || ''}
+                className="h-full w-full scale-110 object-cover"
+              />
+            </div>
+          </AnimatedSection>
         )}
       </div>
     </section>
