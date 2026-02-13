@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowDown, Check, X } from 'lucide-react'
+import { ArrowRight, Check, X } from 'lucide-react'
 import { AnimatedSection } from '@/components/animations/AnimatedSection'
 
 /* ------------------------------------------------------------------ */
@@ -6,37 +6,37 @@ import { AnimatedSection } from '@/components/animations/AnimatedSection'
 /* ------------------------------------------------------------------ */
 
 const painPoints = [
-  'Your website was built by engineers — functional but not converting.',
-  'Your growth is word-of-mouth. Referrals are great until they dry up.',
-  "You've tried agencies. They didn't understand your product.",
+  'Your website was built by engineers — functional, not converting.',
+  'Growth is word-of-mouth. Referrals dry up.',
+  "You've tried agencies. They didn't get your product.",
   "You know you need marketing but don't know where to start.",
-  "You can't afford a full marketing team — but you need the output of one.",
+  "You can't afford a full team — but you need the output of one.",
 ]
 
 const phases = [
   {
     number: '01',
-    title: 'GTM Audit & Strategy',
+    title: 'Audit & Strategy',
     duration: '2–3 weeks',
-    deliverable: 'GTM Strategy Document + 90-Day Execution Roadmap',
+    deliverable: 'GTM Strategy + 90-Day Roadmap',
     description:
-      'Deep dive into your product, market, and positioning. Competitive analysis. ICP definition. Buyer journey mapping. You walk away with total clarity on who to target, what to say, and what to build first.',
+      'Deep dive into product, market, positioning. Competitive analysis. ICP definition. You walk away with clarity on who to target, what to say, and what to build first.',
   },
   {
     number: '02',
     title: 'Build & Launch',
     duration: '6–8 weeks',
-    deliverable: 'A working acquisition system, live and generating leads',
+    deliverable: 'A working acquisition system, live',
     description:
-      'Landing pages designed and developed. HubSpot automation — lead capture, nurture, scoring. Cold outreach system — email sequences, LinkedIn, SDR playbook. Full funnel from awareness to qualified lead to hand-off. Analytics and tracking.',
+      'Landing pages. HubSpot automation. Cold outreach system. Full funnel from awareness to qualified lead to hand-off. Analytics and tracking.',
   },
   {
     number: '03',
     title: 'Optimise & Scale',
-    duration: 'Ongoing monthly',
-    deliverable: 'Monthly performance report + continuous optimisation',
+    duration: 'Monthly retainer',
+    deliverable: 'Continuous growth without you thinking about it',
     description:
-      'Performance reviews, A/B testing, campaign adjustments, strategic check-ins. A growth partner who keeps the system improving without you thinking about it.',
+      'Performance reviews, A/B testing, campaign adjustments, strategic check-ins. Your fractional growth partner.',
   },
 ]
 
@@ -114,19 +114,19 @@ const caseStudy = {
   context:
     'A niche B2B connectivity company selling 5G Fixed Wireless Access to MSPs and corporate IT teams. Technical product, technical buyers, zero acquisition system.',
   problems: [
-    'Website built by engineers — functional but not converting',
+    'Website built by engineers — not converting',
     'No systematic lead generation',
-    'No marketing automation or nurture sequences',
-    'No outreach system — relied on inbound that wasn\'t coming',
+    'No marketing automation or nurture',
+    'No outreach system — relying on inbound that wasn\'t coming',
     'Needed to pivot positioning entirely',
   ],
   built: [
-    'Found product-market fit through positioning work',
-    'Rebuilt landing pages for conversion',
-    'Set up HubSpot automation — lead capture, nurture, scoring',
-    'Built cold outreach system — email, LinkedIn, SDR playbook',
-    'Full funnel from awareness to qualified lead to sales hand-off',
-    'Analytics and tracking to measure what\'s working',
+    'Product-market fit through positioning work',
+    'Landing pages rebuilt for conversion',
+    'HubSpot automation — capture, nurture, scoring',
+    'Cold outreach — email, LinkedIn, SDR playbook',
+    'Full funnel: awareness to qualified lead to hand-off',
+    'Analytics and tracking across everything',
   ],
   result:
     'A complete acquisition system running end-to-end. From scattered tactics to a working growth engine. One person did the strategy AND the building.',
@@ -135,23 +135,23 @@ const caseStudy = {
 const faqs = [
   {
     q: 'Why up-front payment?',
-    a: 'Because I commit fully to your project from day one. Up-front payment ensures we both have skin in the game and I can focus on building, not chasing invoices. All options come with a satisfaction guarantee.',
+    a: 'It aligns incentives. I deliver a fixed outcome, not padded hours. If deliverables don\'t meet agreed standards, money back.',
   },
   {
     q: 'What if my product is too niche?',
-    a: "That's actually ideal. I specialise in B2B tech with technical buyers. The more specific your product, the more precise the targeting. Niche isn't a problem — it's an advantage.",
+    a: "That's ideal. I specialise in B2B tech with technical buyers. The more specific, the more precise the targeting.",
   },
   {
-    q: "What happens after the build?",
-    a: "You own everything. The system runs without me. If you want ongoing optimisation, the retainer option exists — but it's not required. No lock-in, no dependencies.",
+    q: 'What happens after the build?',
+    a: 'You own everything. The system runs without me. The retainer exists if you want ongoing optimisation — not required.',
   },
   {
     q: 'How is this different from an agency?',
-    a: "You work directly with me. No account managers, no juniors, no handoffs. I do the strategic thinking and the technical building. One person, end to end.",
+    a: 'You work directly with me. No account managers, no juniors, no handoffs. One person, end to end.',
   },
   {
-    q: 'Do you work with companies outside the UK?',
-    a: 'Yes. The methodology works globally. I work remotely and async-first, with scheduled check-ins to keep momentum.',
+    q: "Can't I just hire a junior marketer?",
+    a: "You can. They'll need 6-12 months to ramp up, won't know how to build landing pages or automation, and will need managing. I'm operational from week 1.",
   },
 ]
 
@@ -162,205 +162,202 @@ const faqs = [
 export default function HomePage() {
   return (
     <>
-      {/* ── 1. Hero ──────────────────────────────────────────────── */}
-      <section id="hero" className="relative flex min-h-screen items-end overflow-hidden bg-surface">
-        <div className="pointer-events-none absolute inset-0 grid-pattern opacity-40" />
-        <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-accent/10 blur-[128px]" />
-
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 pt-40 md:px-12 md:pb-24 md:pt-48">
-          <AnimatedSection trigger="load" stagger={0.12} duration={1.4}>
-            <p className="font-mono text-sm tracking-wider text-accent">
-              // GROWTH_SYSTEMS_ARCHITECT
+      {/* ━━ 01 · HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="hero" className="section-full relative bg-surface">
+        <div className="mx-auto w-full max-w-5xl">
+          <AnimatedSection trigger="load" stagger={0.15} duration={1.4}>
+            <p className="font-mono text-xs tracking-wider text-accent">
+              // FOR_B2B_TECH_COMPANIES
             </p>
 
-            <h1 className="mt-6 max-w-5xl">
-              You have a great product.{' '}
-              <span className="text-text-muted">You have no acquisition system.</span>
+            <h1 className="mt-8 max-w-4xl" style={{ fontSize: 'clamp(2.8rem, 6vw, 7rem)' }}>
+              You have a great product.
+            </h1>
+            <h1
+              className="max-w-4xl text-text-muted"
+              style={{ fontSize: 'clamp(2.8rem, 6vw, 7rem)' }}
+            >
+              You have no acquisition system.
             </h1>
 
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-text-muted md:text-xl">
-              I build the engine that turns strangers into qualified leads —
-              strategy, landing pages, automation, outreach. End to end.
-              For B2B tech companies with 3–20 staff trying to break past £1M.
+            <p className="mt-10 max-w-lg text-lg leading-relaxed text-text-muted">
+              I build the engine that turns strangers into qualified leads.
+              Strategy, pages, automation, outreach. End to end.
             </p>
 
-            <div className="mt-16 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
-              <a
-                href="#contact"
-                className="group inline-flex items-center gap-3 rounded-sm border border-accent bg-accent px-6 py-3.5 font-mono text-sm tracking-wider text-surface transition-all duration-500 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/10"
-              >
-                Book a Discovery Call
-                <ArrowRight className="h-4 w-4 transition-transform duration-700 ease-luxury group-hover:translate-x-1" />
-              </a>
-              <a
-                href="#system"
-                className="group inline-flex items-center gap-3 font-mono text-sm tracking-wider text-text-muted transition-colors duration-500 hover:text-text"
-              >
-                See how it works
-                <ArrowDown className="h-4 w-4 transition-transform duration-700 ease-luxury group-hover:translate-y-0.5" />
-              </a>
+            <a
+              href="#contact"
+              className="group mt-12 inline-flex items-center gap-3 rounded-sm border border-accent bg-accent px-6 py-3.5 font-mono text-sm tracking-wider text-surface transition-all duration-500 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/10"
+            >
+              Book a Discovery Call
+              <ArrowRight className="h-4 w-4 transition-transform duration-700 ease-luxury group-hover:translate-x-1" />
+            </a>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ━━ 02 · PROBLEM ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="problem" className="section-full bg-surface-alt">
+        <div className="mx-auto w-full max-w-4xl">
+          <AnimatedSection animation="fade-up">
+            <p className="font-mono text-xs tracking-wider text-text-dim">
+              // THE_PROBLEM
+            </p>
+            <h2 className="mt-8">Sound familiar?</h2>
+          </AnimatedSection>
+
+          <div className="mt-16 space-y-8">
+            {painPoints.map((point, i) => (
+              <AnimatedSection key={i} animation="fade-up" delay={i * 0.08}>
+                <p
+                  className="border-l-2 border-border pl-6 text-xl leading-relaxed text-text-muted transition-colors duration-500 hover:border-accent hover:text-text"
+                  style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)' }}
+                >
+                  {point}
+                </p>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          <AnimatedSection animation="fade-up" delay={0.5}>
+            <p className="mt-16 text-lg font-medium text-text">
+              The real issue: you don&rsquo;t have an acquisition system.{' '}
+              <span className="text-text-muted">You have scattered tactics.</span>
+            </p>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ━━ 03 · GUIDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="about" className="section-full bg-surface">
+        <div className="mx-auto w-full max-w-4xl">
+          <AnimatedSection animation="fade-up">
+            <p className="font-mono text-xs tracking-wider text-text-dim">
+              // MEET_YOUR_GUIDE
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay={0.1}>
+            <h2 className="mt-8" style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }}>
+              I do the thinking{' '}
+              <span className="text-accent">and</span>{' '}
+              the building.
+            </h2>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay={0.2}>
+            <p className="mt-8 max-w-2xl text-xl leading-relaxed text-text-muted">
+              I embed with small B2B tech firms to build their entire go-to-market
+              system. No hand-offs. No subcontractors. No &ldquo;here&rsquo;s a
+              strategy deck, good luck.&rdquo;
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay={0.3}>
+            <div className="mt-14 grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  label: 'In the trenches',
+                  text: 'Building a real growth engine for a real B2B tech company right now.',
+                },
+                {
+                  label: 'Full-stack',
+                  text: 'Strategy, copy, design, dev, automation, analytics. No handoffs.',
+                },
+                {
+                  label: 'Tech-native',
+                  text: "I speak the buyer's language, not marketing jargon.",
+                },
+              ].map((item, i) => (
+                <div key={i} className="border-t border-border pt-6">
+                  <p className="font-mono text-xs tracking-wider text-accent">{item.label}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-text-muted">{item.text}</p>
+                </div>
+              ))}
             </div>
           </AnimatedSection>
-
-          <div className="mt-16 border-t border-border" />
         </div>
       </section>
 
-      {/* ── 2. Problem ───────────────────────────────────────────── */}
-      <section id="problem" className="scroll-mt-20 bg-surface-alt">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-40">
-          <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
-            <AnimatedSection animation="fade-up">
-              <p className="font-mono text-sm tracking-wider text-text-dim">
-                // THE_PROBLEM
-              </p>
-              <h2 className="mt-6">
-                Sound familiar?
-              </h2>
-            </AnimatedSection>
-
-            <AnimatedSection animation="fade-up" delay={0.15}>
-              <div className="space-y-6">
-                {painPoints.map((point, i) => (
-                  <p key={i} className="text-lg leading-relaxed text-text-muted">
-                    {point}
-                  </p>
-                ))}
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 3. Guide ─────────────────────────────────────────────── */}
-      <section id="about" className="scroll-mt-20 bg-surface">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-40">
+      {/* ━━ 04 · PROOF ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="proof" className="section-full bg-surface-alt">
+        <div className="mx-auto w-full max-w-4xl">
           <AnimatedSection animation="fade-up">
-            <p className="font-mono text-sm tracking-wider text-text-dim">
-              // MEET_THE_GUIDE
-            </p>
-          </AnimatedSection>
-
-          <div className="mt-12 grid gap-16 lg:grid-cols-2 lg:gap-24">
-            <AnimatedSection animation="fade-up" delay={0.1}>
-              <h2>
-                I do the thinking{' '}
-                <span className="text-accent">and</span> the building.
-              </h2>
-            </AnimatedSection>
-
-            <AnimatedSection animation="fade-up" delay={0.2}>
-              <p className="text-lg leading-relaxed text-text-muted md:text-xl">
-                I&rsquo;m a growth strategist who embeds with small B2B tech firms
-                to build their entire go-to-market system. Strategy, landing pages,
-                automation, outreach — I do the thinking and the building.
-              </p>
-              <div className="mt-10 space-y-4">
-                {[
-                  'Currently in the trenches — building a real growth engine for a real B2B tech company right now.',
-                  'Full-stack execution — strategy, copy, design, web dev, automation, analytics. No handoffs.',
-                  "Tech-native — I speak the buyer's language, not marketing jargon.",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                    <p className="text-text-muted">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 4. Case Study ────────────────────────────────────────── */}
-      <section id="proof" className="scroll-mt-20 border-y border-border bg-surface-alt">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-40">
-          <AnimatedSection animation="fade-up">
-            <p className="font-mono text-sm tracking-wider text-text-dim">
+            <p className="font-mono text-xs tracking-wider text-text-dim">
               // CASE_STUDY
             </p>
-            <h2 className="mt-6">From zero system to full engine.</h2>
-            <p className="mt-4 max-w-2xl text-lg text-text-muted">
+            <h2 className="mt-8">From zero system to full engine.</h2>
+            <p className="mt-4 max-w-2xl text-text-muted">
               {caseStudy.context}
             </p>
           </AnimatedSection>
 
-          <div className="mt-16 grid gap-12 lg:grid-cols-3 lg:gap-8">
-            {/* Problem */}
-            <AnimatedSection animation="fade-up" delay={0.1}>
-              <div className="border-t border-border pt-8">
-                <p className="font-mono text-xs tracking-wider text-accent">THE PROBLEM</p>
-                <ul className="mt-6 space-y-3">
-                  {caseStudy.problems.map((p, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-text-muted">
-                      <X className="mt-0.5 h-4 w-4 shrink-0 text-text-dim" />
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </AnimatedSection>
+          {/* Before */}
+          <AnimatedSection animation="fade-up" delay={0.15}>
+            <div className="mt-16 border-t border-border pt-8">
+              <p className="font-mono text-xs tracking-wider text-text-dim">BEFORE</p>
+              <ul className="mt-6 space-y-3">
+                {caseStudy.problems.map((p, i) => (
+                  <li key={i} className="flex items-start gap-3 text-text-muted">
+                    <X className="mt-1 h-4 w-4 shrink-0 text-text-dim" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </AnimatedSection>
 
-            {/* What was built */}
-            <AnimatedSection animation="fade-up" delay={0.2}>
-              <div className="border-t border-border pt-8">
-                <p className="font-mono text-xs tracking-wider text-accent">WHAT WAS BUILT</p>
-                <ul className="mt-6 space-y-3">
-                  {caseStudy.built.map((b, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-text-muted">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </AnimatedSection>
+          {/* After */}
+          <AnimatedSection animation="fade-up" delay={0.25}>
+            <div className="mt-12 border-t border-border pt-8">
+              <p className="font-mono text-xs tracking-wider text-accent">AFTER</p>
+              <ul className="mt-6 space-y-3">
+                {caseStudy.built.map((b, i) => (
+                  <li key={i} className="flex items-start gap-3 text-text-muted">
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-accent" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </AnimatedSection>
 
-            {/* Result */}
-            <AnimatedSection animation="fade-up" delay={0.3}>
-              <div className="border-t border-border pt-8">
-                <p className="font-mono text-xs tracking-wider text-accent">THE RESULT</p>
-                <p className="mt-6 text-lg leading-relaxed text-text">
-                  {caseStudy.result}
-                </p>
-              </div>
-            </AnimatedSection>
-          </div>
+          {/* Result pull-quote */}
+          <AnimatedSection animation="fade-up" delay={0.35}>
+            <blockquote className="mt-12 border-l-2 border-accent pl-6 text-xl leading-relaxed text-text">
+              {caseStudy.result}
+            </blockquote>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* ── 5. How It Works (The System) ─────────────────────────── */}
-      <section id="system" className="scroll-mt-20 bg-surface">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-40">
-          <AnimatedSection>
-            <p className="font-mono text-sm tracking-wider text-text-dim">
-              // THE_SYSTEM
+      {/* ━━ 05 · SYSTEM ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="system" className="section-full bg-surface">
+        <div className="mx-auto w-full max-w-4xl">
+          <AnimatedSection animation="fade-up">
+            <p className="font-mono text-xs tracking-wider text-text-dim">
+              // HOW_IT_WORKS
             </p>
-            <h2 className="mt-6">Three phases. One system.</h2>
-            <p className="mt-4 max-w-xl text-lg text-text-muted">
-              Simple, sequential, and designed to remove complexity.
-            </p>
+            <h2 className="mt-8">Three phases. One system.</h2>
           </AnimatedSection>
 
-          <div className="mt-20">
+          <div className="mt-16 space-y-0">
             {phases.map((phase, i) => (
               <AnimatedSection key={phase.number} animation="fade-up" delay={i * 0.1}>
-                <div className="border-t border-border py-12 md:py-16">
-                  <div className="grid gap-8 md:grid-cols-12">
-                    <div className="md:col-span-1">
-                      <span className="font-mono text-sm text-text-dim">{phase.number}</span>
-                    </div>
-                    <div className="md:col-span-4">
-                      <h3>{phase.title}</h3>
-                      <div className="mt-3 flex flex-wrap gap-3">
-                        <span className="rounded-sm border border-border px-2.5 py-1 font-mono text-xs text-text-dim">
-                          {phase.duration}
-                        </span>
+                <div className="border-t border-border py-10 md:py-14">
+                  <div className="flex items-baseline gap-6">
+                    <span className="font-mono text-3xl font-semibold text-border-subtle">
+                      {phase.number}
+                    </span>
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-baseline gap-4">
+                        <h3>{phase.title}</h3>
+                        <span className="font-mono text-xs text-text-dim">{phase.duration}</span>
                       </div>
-                    </div>
-                    <div className="md:col-span-7">
-                      <p className="text-sm font-medium text-accent">{phase.deliverable}</p>
-                      <p className="mt-3 leading-relaxed text-text-muted">{phase.description}</p>
+                      <p className="mt-2 text-sm font-medium text-accent">{phase.deliverable}</p>
+                      <p className="mt-3 max-w-xl leading-relaxed text-text-muted">
+                        {phase.description}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -370,98 +367,104 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── 6. Agency vs Me ──────────────────────────────────────── */}
-      <section id="compare" className="scroll-mt-20 bg-surface-alt">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-40">
+      {/* ━━ 06 · COMPARE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="compare" className="section-full bg-surface-alt">
+        <div className="mx-auto w-full max-w-3xl">
           <AnimatedSection animation="fade-up">
-            <p className="font-mono text-sm tracking-wider text-text-dim">
+            <p className="font-mono text-xs tracking-wider text-text-dim">
               // WHY_NOT_AN_AGENCY
             </p>
-            <h2 className="mt-6">The difference.</h2>
+            <h2 className="mt-8">The difference.</h2>
           </AnimatedSection>
 
-          <div className="mt-16 overflow-hidden rounded-sm border border-border">
-            {/* Header */}
-            <div className="grid grid-cols-2 border-b border-border bg-surface">
-              <div className="px-6 py-4">
-                <span className="font-mono text-xs tracking-wider text-text-dim">TYPICAL AGENCY</span>
+          <AnimatedSection animation="fade-up" delay={0.15}>
+            <div className="mt-16 overflow-hidden rounded-sm border border-border">
+              {/* Header */}
+              <div className="grid grid-cols-2 border-b border-border bg-surface">
+                <div className="px-5 py-3.5">
+                  <span className="font-mono text-[10px] tracking-wider text-text-dim">
+                    TYPICAL AGENCY
+                  </span>
+                </div>
+                <div className="border-l border-border px-5 py-3.5">
+                  <span className="font-mono text-[10px] tracking-wider text-accent">
+                    WORKING WITH ME
+                  </span>
+                </div>
               </div>
-              <div className="border-l border-border px-6 py-4">
-                <span className="font-mono text-xs tracking-wider text-accent">WORKING WITH ME</span>
-              </div>
-            </div>
-            {/* Rows */}
-            {comparisonRows.map((row, i) => (
-              <AnimatedSection key={i} animation="fade-up" delay={i * 0.06}>
-                <div className="grid grid-cols-2 border-b border-border last:border-b-0">
-                  <div className="px-6 py-5">
-                    <p className="text-sm text-text-dim">{row.them}</p>
+              {/* Rows */}
+              {comparisonRows.map((row, i) => (
+                <div
+                  key={i}
+                  className="grid grid-cols-2 border-b border-border last:border-b-0"
+                >
+                  <div className="px-5 py-4">
+                    <p className="text-sm leading-relaxed text-text-dim">{row.them}</p>
                   </div>
-                  <div className="border-l border-border px-6 py-5">
-                    <p className="text-sm text-text-muted">{row.me}</p>
+                  <div className="border-l border-border px-5 py-4">
+                    <p className="text-sm leading-relaxed text-text-muted">{row.me}</p>
                   </div>
                 </div>
-              </AnimatedSection>
-            ))}
-          </div>
+              ))}
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* ── 7. Pricing ───────────────────────────────────────────── */}
-      <section id="pricing" className="scroll-mt-20 bg-surface">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-40">
+      {/* ━━ 07 · PRICING ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="pricing" className="section-full bg-surface">
+        <div className="mx-auto w-full max-w-5xl">
           <AnimatedSection animation="fade-up">
-            <p className="font-mono text-sm tracking-wider text-text-dim">
+            <p className="font-mono text-xs tracking-wider text-text-dim">
               // INVESTMENT
             </p>
-            <h2 className="mt-6">Transparent pricing. No surprises.</h2>
-            <p className="mt-4 max-w-xl text-lg text-text-muted">
-              All options include a satisfaction guarantee, direct access (no juniors),
-              and 14-day proposal validity.
+            <h2 className="mt-8">Transparent pricing.</h2>
+            <p className="mt-3 text-text-muted">
+              Satisfaction guarantee. Direct access. No juniors. 14-day proposal validity.
             </p>
           </AnimatedSection>
 
-          <div className="mt-16 grid gap-6 lg:grid-cols-3 lg:gap-4">
+          <div className="mt-14 grid gap-5 lg:grid-cols-3">
             {pricingOptions.map((option, i) => (
               <AnimatedSection key={option.name} animation="fade-up" delay={i * 0.1}>
                 <div
-                  className={`flex h-full flex-col rounded-sm border p-8 transition-all duration-500 ${
+                  className={`flex h-full flex-col rounded-sm border p-6 transition-all duration-500 ${
                     option.recommended
                       ? 'border-accent/50 bg-surface-alt shadow-lg shadow-accent/5'
                       : 'border-border bg-surface-alt hover:border-border-subtle'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <p className="font-mono text-xs tracking-wider text-text-dim">{option.scope}</p>
+                    <p className="font-mono text-[10px] tracking-wider text-text-dim">
+                      {option.scope}
+                    </p>
                     {option.recommended && (
-                      <span className="rounded-sm bg-accent/10 px-2.5 py-1 font-mono text-xs tracking-wider text-accent">
+                      <span className="rounded-sm bg-accent/10 px-2 py-0.5 font-mono text-[10px] tracking-wider text-accent">
                         RECOMMENDED
                       </span>
                     )}
                   </div>
 
-                  <h3 className="mt-4">{option.name}</h3>
+                  <h3 className="mt-3">{option.name}</h3>
 
-                  <div className="mt-6">
-                    <p className="text-3xl font-semibold text-text">{option.price}</p>
-                    <p className="mt-1 font-mono text-xs text-text-dim">{option.priceNote}</p>
+                  <div className="mt-4">
+                    <p className="text-2xl font-semibold text-text">{option.price}</p>
+                    <p className="mt-1 font-mono text-[10px] text-text-dim">{option.priceNote}</p>
                   </div>
 
-                  <div className="mt-8 border-t border-border pt-6">
-                    <ul className="space-y-3">
-                      {option.features.map((feature, j) => (
-                        <li key={j} className="flex items-start gap-3 text-sm text-text-muted">
-                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <ul className="mt-6 space-y-2.5 border-t border-border pt-5">
+                    {option.features.map((feature, j) => (
+                      <li key={j} className="flex items-start gap-2.5 text-sm text-text-muted">
+                        <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
 
-                  <div className="mt-auto pt-8">
+                  <div className="mt-auto pt-6">
                     <a
                       href="#contact"
-                      className={`block w-full rounded-sm py-3 text-center font-mono text-sm tracking-wider transition-all duration-500 ${
+                      className={`block w-full rounded-sm py-2.5 text-center font-mono text-xs tracking-wider transition-all duration-500 ${
                         option.recommended
                           ? 'bg-accent text-surface hover:bg-accent-hover'
                           : 'border border-border text-text-muted hover:border-accent/30 hover:text-text'
@@ -477,21 +480,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── 8. FAQ ───────────────────────────────────────────────── */}
-      <section id="faq" className="scroll-mt-20 bg-surface-alt">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-40">
+      {/* ━━ 08 · FAQ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="faq" className="section-full bg-surface-alt">
+        <div className="mx-auto w-full max-w-2xl">
           <AnimatedSection animation="fade-up">
-            <p className="font-mono text-sm tracking-wider text-text-dim">
+            <p className="font-mono text-xs tracking-wider text-text-dim">
               // FAQ
             </p>
-            <h2 className="mt-6">Questions you&rsquo;re probably asking.</h2>
+            <h2 className="mt-8">Questions you&rsquo;re probably asking.</h2>
           </AnimatedSection>
 
-          <div className="mt-16 max-w-3xl">
+          <div className="mt-14">
             {faqs.map((faq, i) => (
               <AnimatedSection key={i} animation="fade-up" delay={i * 0.06}>
-                <div className="border-t border-border py-8 md:py-10">
-                  <h3 className="text-text">{faq.q}</h3>
+                <div className="border-t border-border py-8">
+                  <h3>{faq.q}</h3>
                   <p className="mt-3 leading-relaxed text-text-muted">{faq.a}</p>
                 </div>
               </AnimatedSection>
@@ -500,56 +503,50 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── 9. CTA / Contact ─────────────────────────────────────── */}
-      <section id="contact" className="relative scroll-mt-20 overflow-hidden bg-surface">
+      {/* ━━ 09 · CONTACT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="contact" className="section-full relative bg-surface">
         <div className="pointer-events-none absolute -bottom-32 right-0 h-[400px] w-[400px] rounded-full bg-accent/10 blur-[100px]" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-40">
-          <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
-            <AnimatedSection animation="fade-up">
-              <p className="font-mono text-sm tracking-wider text-text-dim">
-                // START_HERE
-              </p>
-              <h2 className="mt-6">
-                A growth engine running{' '}
-                <span className="text-accent">without you thinking about it.</span>
-              </h2>
-              <p className="mt-6 text-lg text-text-muted">
-                That&rsquo;s the after-state. One discovery call to find out if we&rsquo;re
-                a good fit. No pitch decks. No pressure. Just a conversation.
-              </p>
-            </AnimatedSection>
+        <div className="relative z-10 mx-auto w-full max-w-3xl text-center">
+          <AnimatedSection animation="fade-up">
+            <p className="font-mono text-xs tracking-wider text-text-dim">
+              // START_HERE
+            </p>
+            <h2 className="mt-8" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+              A growth engine running{' '}
+              <span className="text-accent">without you thinking about it.</span>
+            </h2>
+            <p className="mt-6 text-lg text-text-muted">
+              One discovery call. No pitch decks. No pressure. Just a conversation
+              to find out if we&rsquo;re a good fit.
+            </p>
+          </AnimatedSection>
 
-            <AnimatedSection animation="fade-up" delay={0.15}>
-              <div className="flex flex-col justify-center">
+          <AnimatedSection animation="fade-up" delay={0.15}>
+            <a
+              href="mailto:hello@gst.studio"
+              className="group mt-10 inline-flex items-center gap-3 rounded-sm border border-accent bg-accent px-8 py-4 font-mono text-sm tracking-wider text-surface transition-all duration-500 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/10"
+            >
+              Book a Discovery Call
+              <ArrowRight className="h-4 w-4 transition-transform duration-700 ease-luxury group-hover:translate-x-1" />
+            </a>
+
+            <p className="mt-6 font-mono text-xs text-text-dim">
+              Or email directly: hello@gst.studio
+            </p>
+
+            <div className="mt-12 flex justify-center gap-8">
+              {['Twitter', 'Instagram', 'LinkedIn'].map((social) => (
                 <a
-                  href="mailto:hello@gst.studio"
-                  className="group inline-flex items-center gap-3 rounded-sm border border-accent bg-accent px-8 py-4 font-mono text-sm tracking-wider text-surface transition-all duration-500 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/10"
+                  key={social}
+                  href="#"
+                  className="font-mono text-xs uppercase tracking-wider text-text-dim transition-colors duration-500 hover:text-accent"
                 >
-                  Book a Discovery Call
-                  <ArrowRight className="h-4 w-4 transition-transform duration-700 ease-luxury group-hover:translate-x-1" />
+                  {social}
                 </a>
-
-                <p className="mt-6 font-mono text-xs text-text-dim">
-                  Or email directly: hello@gst.studio
-                </p>
-
-                <div className="mt-12 border-t border-border pt-8">
-                  <div className="flex flex-wrap gap-8">
-                    {['Twitter', 'Instagram', 'LinkedIn'].map((social) => (
-                      <a
-                        key={social}
-                        href="#"
-                        className="font-mono text-xs uppercase tracking-wider text-text-dim transition-colors duration-500 hover:text-accent"
-                      >
-                        {social}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
+              ))}
+            </div>
+          </AnimatedSection>
         </div>
       </section>
     </>
