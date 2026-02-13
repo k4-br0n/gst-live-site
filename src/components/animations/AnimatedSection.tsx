@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 import { gsap, useGSAP } from '@/lib/gsap'
 
 type AnimationType = 'fade-up' | 'fade-in' | 'slide-left' | 'slide-right' | 'scale-up'
@@ -15,7 +15,7 @@ type Props = {
   /** 'scroll' = animate when scrolled into view, 'load' = animate immediately on mount */
   trigger?: 'scroll' | 'load'
   /** HTML tag to render */
-  as?: keyof JSX.IntrinsicElements
+  as?: React.ElementType
 }
 
 const fromVars: Record<AnimationType, gsap.TweenVars> = {
