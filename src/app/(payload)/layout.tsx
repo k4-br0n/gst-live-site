@@ -2,7 +2,7 @@
 /* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
 import config from '@payload-config'
 import '@payloadcms/next/css'
-import { RootLayout } from '@payloadcms/next/layouts'
+import { handleServerFunctions, RootLayout } from '@payloadcms/next/layouts'
 import React from 'react'
 
 import { importMap } from './admin/[[...segments]]/importMap'
@@ -12,7 +12,7 @@ type Args = {
 }
 
 const Layout = ({ children }: Args) => (
-  <RootLayout config={config} importMap={importMap}>
+  <RootLayout config={config} importMap={importMap} serverFunction={handleServerFunctions}>
     {children}
   </RootLayout>
 )
