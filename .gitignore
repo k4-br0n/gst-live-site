@@ -27,5 +27,4 @@ next-env.d.ts
 
 # payload auto-generated
 src/app/(payload)/admin/[[...segments]]/importMap.js
-src/payload-types.ts
 media/
