@@ -1,246 +1,487 @@
-import { getPayload } from 'payload'
-import config from '@payload-config'
-import { HomepageContent } from '@/components/HomepageContent'
-import type { Homepage } from '@/payload-types'
+import { ArrowRight, Check, X } from 'lucide-react'
+import { AnimatedSection } from '@/components/animations/AnimatedSection'
 
-/* ── Fallback data — used when CMS Global is empty ──────────────── */
-const fallback: Homepage = {
-  hero: {
-    eyebrow: '// FOR_B2B_TECH_COMPANIES',
-    headingLine1: 'You have a great product.',
-    headingLine2: 'You have no acquisition system.',
+/* ------------------------------------------------------------------ */
+/*  Data                                                               */
+/* ------------------------------------------------------------------ */
+
+const problemCategories = [
+  {
+    title: 'Positioning & messaging',
     description:
-      'I build the engine that turns strangers into qualified leads. Strategy, pages, automation, outreach. End to end.',
-    ctaText: 'Book a Discovery Call',
-    ctaLink: '#contact',
+      'Your product is strong but your message isn\u2019t landing. Technical founders struggle to articulate value in a way that drives action.',
   },
-  problem: {
-    eyebrow: '// THE_PROBLEM',
-    heading: 'Sound familiar?',
-    painPoints: [
-      { text: 'Your website was built by engineers — functional, not converting.' },
-      { text: 'Growth is word-of-mouth. Referrals dry up.' },
-      { text: "You've tried agencies. They didn't get your product." },
-      { text: "You know you need marketing but don't know where to start." },
-      { text: "You can't afford a full team — but you need the output of one." },
-    ],
-    summary:
-      "The real issue: you don't have an acquisition system. You have scattered tactics.",
-  },
-  guide: {
-    eyebrow: '// MEET_YOUR_GUIDE',
-    heading: 'I do the thinking and the building.',
+  {
+    title: 'Systematic lead generation',
     description:
-      'I embed with small B2B tech firms to build their entire go-to-market system. No hand-offs. No subcontractors. No "here\'s a strategy deck, good luck."',
-    advantages: [
-      {
-        label: 'In the trenches',
-        text: 'Building a real growth engine for a real B2B tech company right now.',
-      },
-      {
-        label: 'Full-stack',
-        text: 'Strategy, copy, design, dev, automation, analytics. No handoffs.',
-      },
-      {
-        label: 'Tech-native',
-        text: "I speak the buyer's language, not marketing jargon.",
-      },
-    ],
+      'Growth is word-of-mouth. Referrals dry up. You have no repeatable system turning strangers into qualified leads.',
   },
-  proof: {
-    eyebrow: '// CASE_STUDY',
-    heading: 'From zero system to full engine.',
-    context:
-      'A niche B2B connectivity company selling 5G Fixed Wireless Access to MSPs and corporate IT teams. Technical product, technical buyers, zero acquisition system.',
-    problems: [
-      { text: 'Website built by engineers — not converting' },
-      { text: 'No systematic lead generation' },
-      { text: 'No marketing automation or nurture' },
-      { text: "No outreach system — relying on inbound that wasn't coming" },
-      { text: 'Needed to pivot positioning entirely' },
-    ],
-    built: [
-      { text: 'Product-market fit through positioning work' },
-      { text: 'Landing pages rebuilt for conversion' },
-      { text: 'HubSpot automation — capture, nurture, scoring' },
-      { text: 'Cold outreach — email, LinkedIn, SDR playbook' },
-      { text: 'Full funnel: awareness to qualified lead to hand-off' },
-      { text: 'Analytics and tracking across everything' },
-    ],
-    result:
-      'A complete acquisition system running end-to-end. From scattered tactics to a working growth engine. One person did the strategy AND the building.',
-  },
-  system: {
-    eyebrow: '// HOW_IT_WORKS',
-    heading: 'Three phases. One system.',
-    phases: [
-      {
-        number: '01',
-        title: 'Audit & Strategy',
-        duration: '2–3 weeks',
-        deliverable: 'GTM Strategy + 90-Day Roadmap',
-        description:
-          'Deep dive into product, market, positioning. Competitive analysis. ICP definition. You walk away with clarity on who to target, what to say, and what to build first.',
-      },
-      {
-        number: '02',
-        title: 'Build & Launch',
-        duration: '6–8 weeks',
-        deliverable: 'A working acquisition system, live',
-        description:
-          'Landing pages. HubSpot automation. Cold outreach system. Full funnel from awareness to qualified lead to hand-off. Analytics and tracking.',
-      },
-      {
-        number: '03',
-        title: 'Optimise & Scale',
-        duration: 'Monthly retainer',
-        deliverable: 'Continuous growth without you thinking about it',
-        description:
-          'Performance reviews, A/B testing, campaign adjustments, strategic check-ins. Your fractional growth partner.',
-      },
-    ],
-  },
-  compare: {
-    eyebrow: '// WHY_NOT_AN_AGENCY',
-    heading: 'The difference.',
-    rows: [
-      {
-        them: 'Account manager relays your needs to a team',
-        me: 'You talk to the person doing the work',
-      },
-      {
-        them: 'Generic playbook applied to your niche',
-        me: "I understand B2B tech — I'm building one right now",
-      },
-      {
-        them: 'Strategy OR execution',
-        me: 'Strategy AND execution — thinking and building',
-      },
-      {
-        them: 'Dozens of clients, divided attention',
-        me: '2–3 clients max — you get real focus',
-      },
-      {
-        them: 'Long contracts, slow timelines',
-        me: 'Fixed scope, clear timelines, pause or stop anytime',
-      },
-    ],
-  },
-  pricing: {
-    eyebrow: '// INVESTMENT',
-    heading: 'Transparent pricing.',
-    subtitle:
-      'Satisfaction guarantee. Direct access. No juniors. 14-day proposal validity.',
-    options: [
-      {
-        name: 'The Audit',
-        scope: 'Phase 1',
-        price: '£3,000',
-        priceNote: 'one-time, up-front',
-        features: [
-          { text: 'GTM Strategy Document' },
-          { text: '90-Day Execution Roadmap' },
-          { text: 'Competitive analysis' },
-          { text: 'ICP definition' },
-          { text: 'Buyer journey mapping' },
-        ],
-        recommended: false,
-      },
-      {
-        name: 'The Full Build',
-        scope: 'Phase 1 + 2',
-        price: '£8,000–12,000',
-        priceNote: 'one-time or 50/50 split',
-        features: [
-          { text: 'Everything in The Audit' },
-          { text: 'Landing pages designed + developed' },
-          { text: 'HubSpot automation setup' },
-          { text: 'Cold outreach system' },
-          { text: 'Full funnel build' },
-          { text: 'Analytics & tracking' },
-        ],
-        recommended: true,
-      },
-      {
-        name: 'Build + Partner',
-        scope: 'Phase 1 + 2 + 3',
-        price: '£10,000–15,000',
-        priceNote: 'build + £2,500–3,500/mo retainer',
-        features: [
-          { text: 'Everything in The Full Build' },
-          { text: 'Monthly performance reviews' },
-          { text: 'A/B testing & optimisation' },
-          { text: 'Campaign adjustments' },
-          { text: 'Strategic check-ins' },
-          { text: 'Fractional growth partner' },
-        ],
-        recommended: false,
-      },
-    ],
-  },
-  faq: {
-    eyebrow: '// FAQ',
-    heading: "Questions you're probably asking.",
-    items: [
-      {
-        question: 'Why up-front payment?',
-        answer:
-          "It aligns incentives. I deliver a fixed outcome, not padded hours. If deliverables don't meet agreed standards, money back.",
-      },
-      {
-        question: 'What if my product is too niche?',
-        answer:
-          "That's ideal. I specialise in B2B tech with technical buyers. The more specific, the more precise the targeting.",
-      },
-      {
-        question: 'What happens after the build?',
-        answer:
-          'You own everything. The system runs without me. The retainer exists if you want ongoing optimisation — not required.',
-      },
-      {
-        question: 'How is this different from an agency?',
-        answer:
-          'You work directly with me. No account managers, no juniors, no handoffs. One person, end to end.',
-      },
-      {
-        question: "Can't I just hire a junior marketer?",
-        answer:
-          "You can. They'll need 6-12 months to ramp up, won't know how to build landing pages or automation, and will need managing. I'm operational from week 1.",
-      },
-    ],
-  },
-  contact: {
-    eyebrow: '// START_HERE',
-    heading: 'A growth engine running without you thinking about it.',
+  {
+    title: 'Full-stack execution',
     description:
-      "One discovery call. No pitch decks. No pressure. Just a conversation to find out if we're a good fit.",
-    ctaText: 'Book a Discovery Call',
-    ctaLink: 'mailto:hello@gst.studio',
-    email: 'hello@gst.studio',
-    socials: [
-      { name: 'Twitter', url: '#' },
-      { name: 'Instagram', url: '#' },
-      { name: 'LinkedIn', url: '#' },
-    ],
+      'You\u2019ve been burned by agencies who didn\u2019t understand your product. You need someone who does the thinking and the building.',
   },
+]
+
+const pathwaySteps = [
+  {
+    label: 'Phase 1',
+    title: 'GTM Audit & Strategy',
+    description:
+      'Find what is and isn\u2019t working. Walk away with a complete strategy and 90-day roadmap.',
+  },
+  {
+    label: 'Phase 2',
+    title: 'Build & Launch',
+    description:
+      'Landing pages, automation, outreach \u2014 a working acquisition system, live and generating leads.',
+  },
+  {
+    label: 'Phase 3',
+    title: 'Optimise & Scale',
+    description:
+      'Ongoing partnership for continuous growth. Your fractional growth partner.',
+  },
+]
+
+const agitationBlocks = [
+  {
+    number: '01',
+    heading: 'You\u2019ve got a great product and existing clients love it.',
+    description:
+      'You\u2019ve bootstrapped your way through early growth. But now the stakes are higher, and what got you here isn\u2019t getting you any further.',
+  },
+  {
+    number: '02',
+    heading: 'You\u2019ve tried hiring salespeople. You\u2019ve tried agencies.',
+    description:
+      'Tweaking your marketing, investing in new tools. But nothing has made a meaningful difference. Agencies didn\u2019t understand your product. Juniors needed managing. Tools without strategy are just noise.',
+  },
+  {
+    number: '03',
+    heading: 'The real problem isn\u2019t any one thing \u2014 it\u2019s a mix of things.',
+    description:
+      'Where does your customer journey actually start? Is your positioning clear? Is your messaging aligned with how buyers actually make decisions? Do you have a system, or scattered tactics?',
+  },
+]
+
+const advantages = [
+  {
+    label: 'In the trenches',
+    text: 'Currently building a real growth engine for a real B2B tech company. Not an ex-marketer who advises \u2014 I\u2019m in it.',
+  },
+  {
+    label: 'Full-stack execution',
+    text: 'Strategy, copy, design, web dev, automation, analytics. One person. No handoffs, no gaps.',
+  },
+  {
+    label: 'Tech-native',
+    text: 'I understand the product landscape intrinsically. I speak the buyer\u2019s language, not marketing jargon.',
+  },
+]
+
+const caseStudy = {
+  context:
+    'A niche B2B connectivity company selling 5G Fixed Wireless Access to MSPs and corporate IT teams. Technical product, technical buyers, zero acquisition system.',
+  problems: [
+    'Website built by engineers \u2014 functional, not converting',
+    'No systematic lead generation',
+    'No marketing automation or nurture sequences',
+    'No outreach system \u2014 relying on inbound that wasn\u2019t coming',
+    'Needed to pivot positioning entirely',
+  ],
+  built: [
+    'Product-market fit through positioning work',
+    'Landing pages rebuilt for conversion',
+    'HubSpot automation \u2014 capture, nurture, scoring',
+    'Cold outreach \u2014 email, LinkedIn, SDR playbook',
+    'Full funnel: awareness to qualified lead to hand-off',
+    'Analytics and tracking across everything',
+  ],
+  result:
+    'A complete acquisition system running end-to-end. From scattered tactics to a working growth engine. One person did the strategy AND the building.',
 }
 
-/* ── Page (server component) ────────────────────────────────────── */
+const qualifierItems = [
+  'You run a B2B tech company with 3\u201320 staff, trying to break past \u00A31M revenue.',
+  'You\u2019ve tried hiring, tweaking messaging, or adding tools \u2014 but nothing\u2019s sticking.',
+  'You suspect the problem isn\u2019t any one thing \u2014 it\u2019s alignment.',
+  'You\u2019ve been burned by agencies who didn\u2019t understand your product.',
+  'You\u2019re ready for a clear system that connects strategy, execution, and how technical buyers actually make decisions.',
+  'You want to stop guessing and start growing \u2014 with a plan that actually works.',
+]
 
-export default async function HomePage() {
-  let data: Homepage = fallback
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
 
-  try {
-    const payload = await getPayload({ config })
-    const homepage = await payload.findGlobal({ slug: 'homepage' }) as Homepage
+export default function HomePage() {
+  return (
+    <>
+      {/* ━━ 01 · HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="hero" className="section-full relative bg-surface">
+        <div className="mx-auto w-full max-w-5xl">
+          <AnimatedSection trigger="load" stagger={0.15} duration={1.4}>
+            <p className="font-mono text-xs tracking-wider text-accent">
+              // FOR_B2B_TECH_COMPANIES
+            </p>
 
-    // Use CMS data if it has been populated (check if hero heading exists)
-    if (homepage?.hero?.headingLine1) {
-      data = homepage
-    }
-  } catch {
-    // CMS unavailable — use fallback silently
-  }
+            <h1 className="mt-8 max-w-4xl" style={{ fontSize: 'clamp(2.8rem, 6vw, 7rem)' }}>
+              You&rsquo;ve built a great product.
+            </h1>
+            <h1
+              className="max-w-4xl text-text-muted"
+              style={{ fontSize: 'clamp(2.8rem, 6vw, 7rem)' }}
+            >
+              Now you need an engine to sell it.
+            </h1>
 
-  return <HomepageContent data={data} />
+            <p className="mt-10 max-w-lg text-lg leading-relaxed text-text-muted">
+              I build repeatable acquisition systems for B2B tech founders who are tired of
+              hoping referrals will carry them to the next stage.
+            </p>
+
+            <a
+              href="#contact"
+              className="group mt-12 inline-flex items-center gap-3 rounded-sm border border-accent bg-accent px-6 py-3.5 font-mono text-sm tracking-wider text-surface transition-all duration-500 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/10"
+            >
+              Book a Discovery Call
+              <ArrowRight className="h-4 w-4 transition-transform duration-700 ease-luxury group-hover:translate-x-1" />
+            </a>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ━━ 02 · TESTIMONIAL (immediate social proof) ━━━━━━━━━━━━━━ */}
+      <section id="testimonial" className="section-full bg-surface-alt">
+        <div className="mx-auto w-full max-w-4xl">
+          <AnimatedSection animation="fade-up">
+            <blockquote className="relative">
+              <p
+                className="font-sans font-semibold leading-snug tracking-tight text-text"
+                style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)' }}
+              >
+                &ldquo;One person did the strategy AND the building &mdash; from scattered
+                tactics to a working growth engine.&rdquo;
+              </p>
+              <footer className="mt-8 flex items-center gap-4">
+                <div className="h-px flex-1 max-w-12 bg-accent" />
+                <div>
+                  <p className="font-mono text-xs tracking-wider text-text">
+                    B2B Tech Founder
+                  </p>
+                  <p className="mt-1 font-mono text-[10px] tracking-wider text-text-dim">
+                    CEO &middot; UK Connectivity Company
+                  </p>
+                </div>
+              </footer>
+            </blockquote>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ━━ 03 · PROBLEM (validating + categories) ━━━━━━━━━━━━━━━━━ */}
+      <section id="problem" className="section-full bg-surface">
+        <div className="mx-auto w-full max-w-4xl">
+          <AnimatedSection animation="fade-up">
+            <p className="font-mono text-xs tracking-wider text-text-dim">// THE_PROBLEM</p>
+            <h2 className="mt-8">
+              You&rsquo;ve built something great, but growth has stalled.
+            </h2>
+            <p className="mt-4 text-lg text-text-muted">You need help with&hellip;</p>
+          </AnimatedSection>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {problemCategories.map((cat, i) => (
+              <AnimatedSection key={i} animation="fade-up" delay={i * 0.1}>
+                <div className="border-t border-border pt-6">
+                  <h3 className="text-lg">{cat.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                    {cat.description}
+                  </p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ━━ 04 · BRIDGE (solution preview + CTA) ━━━━━━━━━━━━━━━━━━━ */}
+      <section id="bridge" className="section-full bg-surface-alt">
+        <div className="mx-auto w-full max-w-3xl text-center">
+          <AnimatedSection animation="fade-up">
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+              Let&rsquo;s build a system that actually works.
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-text-muted">
+              It starts with a GTM Audit using my three-phase framework.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay={0.15}>
+            <a
+              href="#contact"
+              className="group mt-10 inline-flex items-center gap-3 rounded-sm border border-accent bg-accent px-6 py-3.5 font-mono text-sm tracking-wider text-surface transition-all duration-500 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/10"
+            >
+              Book a Discovery Call
+              <ArrowRight className="h-4 w-4 transition-transform duration-700 ease-luxury group-hover:translate-x-1" />
+            </a>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay={0.25}>
+            <p className="mx-auto mt-10 max-w-xl text-sm leading-relaxed text-text-muted">
+              In just <span className="font-semibold text-text">2&ndash;3 weeks</span>,
+              we&rsquo;ll identify exactly what&rsquo;s blocking your growth and map out a
+              clear plan to fix it &mdash; so you see clarity without waiting months.
+            </p>
+            <p className="mt-4 text-sm text-text-muted">
+              From there, we&rsquo;ll define the right level of support for your goals and team.
+            </p>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ━━ 05 · PATHWAY (service options) ━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="pathway" className="section-full bg-surface">
+        <div className="mx-auto w-full max-w-4xl">
+          <AnimatedSection animation="fade-up">
+            <p className="font-mono text-xs tracking-wider text-text-dim">// HOW_IT_WORKS</p>
+            <h2 className="mt-8">Three phases. One system.</h2>
+          </AnimatedSection>
+
+          <div className="mt-16 grid gap-8 md:grid-cols-3">
+            {pathwaySteps.map((step, i) => (
+              <AnimatedSection key={i} animation="fade-up" delay={i * 0.1}>
+                <div className="relative border-t border-border pt-6">
+                  <p className="font-mono text-[10px] tracking-wider text-accent">
+                    {step.label}
+                  </p>
+                  <h3 className="mt-3">{step.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                    {step.description}
+                  </p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ━━ 06 · AGITATION (deeper problem) ━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="agitation" className="section-full bg-surface-alt">
+        <div className="mx-auto w-full max-w-4xl">
+          <AnimatedSection animation="fade-up">
+            <p className="font-mono text-xs tracking-wider text-text-dim">
+              // THE_REALITY
+            </p>
+            <h2 className="mt-8">You&rsquo;ve already proven your product works.</h2>
+          </AnimatedSection>
+
+          <div className="mt-16 space-y-0">
+            {agitationBlocks.map((block, i) => (
+              <AnimatedSection key={i} animation="fade-up" delay={0.1 + i * 0.12}>
+                <div className="flex gap-6 border-t border-border py-10 md:gap-8">
+                  {/* Number column */}
+                  <span className="shrink-0 font-mono text-3xl font-semibold text-border-subtle">
+                    {block.number}
+                  </span>
+                  {/* Content */}
+                  <div className="max-w-xl">
+                    <h3 style={{ fontSize: 'clamp(1.2rem, 2.2vw, 1.6rem)' }}>
+                      {block.heading}
+                    </h3>
+                    <p className="mt-3 leading-relaxed text-text-muted">
+                      {block.description}
+                    </p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          <AnimatedSection animation="fade-up" delay={0.5}>
+            <div className="mt-10 border-t border-border pt-10">
+              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+                That&rsquo;s the gap I help close.
+              </h2>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-text-muted">
+                When we find the root causes, we can fix them. Once everything is aligned &mdash;
+                positioning, messaging, pages, automation, outreach &mdash; you start to see
+                momentum again.
+              </p>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ━━ 07 · GUIDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="about" className="section-full bg-surface">
+        <div className="mx-auto w-full max-w-4xl">
+          <AnimatedSection animation="fade-up">
+            <p className="font-mono text-xs tracking-wider text-text-dim">
+              // MEET_YOUR_GUIDE
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay={0.1}>
+            <h2 className="mt-8" style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }}>
+              Most consultants hand you a strategy deck.{' '}
+              <span className="text-text-muted">I build the engine.</span>
+            </h2>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay={0.2}>
+            <p className="mt-8 max-w-2xl text-xl leading-relaxed text-text-muted">
+              I&rsquo;m a growth strategist who embeds with small B2B tech firms to build their
+              entire go-to-market system. Strategy, landing pages, automation, outreach &mdash;
+              end to end. No handoffs. No subcontractors. No &ldquo;here&rsquo;s a strategy
+              deck, good luck.&rdquo;
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay={0.3}>
+            <div className="mt-14 grid gap-6 md:grid-cols-3">
+              {advantages.map((item, i) => (
+                <div key={i} className="border-t border-border pt-6">
+                  <p className="font-mono text-xs tracking-wider text-accent">{item.label}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-text-muted">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ━━ 08 · PROOF (case study) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="proof" className="section-full bg-surface-alt">
+        <div className="mx-auto w-full max-w-4xl">
+          <AnimatedSection animation="fade-up">
+            <p className="font-mono text-xs tracking-wider text-text-dim">// CASE_STUDY</p>
+            <h2 className="mt-8">From zero system to full engine.</h2>
+            <p className="mt-4 max-w-2xl text-text-muted">{caseStudy.context}</p>
+          </AnimatedSection>
+
+          {/* Before */}
+          <AnimatedSection animation="fade-up" delay={0.15}>
+            <div className="mt-16 border-t border-border pt-8">
+              <p className="font-mono text-xs tracking-wider text-text-dim">BEFORE</p>
+              <ul className="mt-6 space-y-3">
+                {caseStudy.problems.map((p, i) => (
+                  <li key={i} className="flex items-start gap-3 text-text-muted">
+                    <X className="mt-1 h-4 w-4 shrink-0 text-text-dim" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </AnimatedSection>
+
+          {/* After */}
+          <AnimatedSection animation="fade-up" delay={0.25}>
+            <div className="mt-12 border-t border-border pt-8">
+              <p className="font-mono text-xs tracking-wider text-accent">AFTER</p>
+              <ul className="mt-6 space-y-3">
+                {caseStudy.built.map((b, i) => (
+                  <li key={i} className="flex items-start gap-3 text-text-muted">
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-accent" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay={0.35}>
+            <blockquote className="mt-12 border-l-2 border-accent pl-6 text-xl leading-relaxed text-text">
+              {caseStudy.result}
+            </blockquote>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ━━ 09 · QUALIFIER ("this is for you if…") ━━━━━━━━━━━━━━━━━ */}
+      <section id="qualifier" className="section-full bg-surface">
+        <div className="mx-auto w-full max-w-3xl">
+          <AnimatedSection animation="fade-up">
+            <h2>This is for you if&hellip;</h2>
+          </AnimatedSection>
+
+          <div className="mt-12 space-y-5">
+            {qualifierItems.map((item, i) => (
+              <AnimatedSection key={i} animation="fade-up" delay={i * 0.06}>
+                <div className="flex items-start gap-4">
+                  <Check className="mt-1.5 h-4 w-4 shrink-0 text-accent" />
+                  <p className="text-lg leading-relaxed text-text-muted">{item}</p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          <AnimatedSection animation="fade-up" delay={0.5}>
+            <div className="mt-16 border-t border-border pt-10">
+              <h3 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)' }}>
+                You don&rsquo;t need another quick fix.
+              </h3>
+              <p className="mt-4 max-w-xl text-lg leading-relaxed text-text-muted">
+                You need a system that aligns your positioning, messaging, pages, automation, and
+                outreach &mdash; so your company can grow with clarity and confidence.
+              </p>
+              <a
+                href="#contact"
+                className="group mt-8 inline-flex items-center gap-3 rounded-sm border border-accent bg-accent px-6 py-3.5 font-mono text-sm tracking-wider text-surface transition-all duration-500 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/10"
+              >
+                Book a Discovery Call
+                <ArrowRight className="h-4 w-4 transition-transform duration-700 ease-luxury group-hover:translate-x-1" />
+              </a>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ━━ 10 · CONTACT (final CTA) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="contact" className="section-full relative bg-surface-alt">
+        <div className="pointer-events-none absolute -bottom-32 right-0 h-[400px] w-[400px] rounded-full bg-accent/10 blur-[100px]" />
+
+        <div className="relative z-10 mx-auto w-full max-w-3xl text-center">
+          <AnimatedSection animation="fade-up">
+            <p className="font-mono text-xs tracking-wider text-text-dim">// START_HERE</p>
+            <h2 className="mt-8" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+              A growth engine running{' '}
+              <span className="text-accent">without you thinking about it.</span>
+            </h2>
+            <p className="mt-6 text-lg text-text-muted">
+              One discovery call. No pitch decks. No pressure. Just a conversation to see if
+              we&rsquo;re a good fit.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay={0.15}>
+            <a
+              href="mailto:jorge@gst.studio"
+              className="group mt-10 inline-flex items-center gap-3 rounded-sm border border-accent bg-accent px-8 py-4 font-mono text-sm tracking-wider text-surface transition-all duration-500 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/10"
+            >
+              Book a Discovery Call
+              <ArrowRight className="h-4 w-4 transition-transform duration-700 ease-luxury group-hover:translate-x-1" />
+            </a>
+
+            <p className="mt-6 font-mono text-xs text-text-dim">
+              Or email directly: jorge@gst.studio
+            </p>
+
+            <div className="mt-12 flex justify-center gap-8">
+              {['LinkedIn', 'Twitter'].map((social) => (
+                <a
+                  key={social}
+                  href="#"
+                  className="font-mono text-xs uppercase tracking-wider text-text-dim transition-colors duration-500 hover:text-accent"
+                >
+                  {social}
+                </a>
+              ))}
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+    </>
+  )
 }
