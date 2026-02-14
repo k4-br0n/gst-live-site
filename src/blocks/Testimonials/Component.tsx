@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { AnimatedSection } from '@/components/animations/AnimatedSection'
+import { TypingText } from '@/components/TypingText'
 
 type Testimonial = {
   quote: string
@@ -26,8 +27,8 @@ export function TestimonialsBlock({ heading, testimonials }: Props) {
       <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-40">
         {heading && (
           <AnimatedSection animation="fade-up" duration={1.2}>
-            <p className="font-mono text-sm tracking-wider text-text-dim">
-              // TESTIMONIALS
+            <p className="font-mono text-sm tracking-wider text-accent">
+              <TypingText text="// TESTIMONIALS" speed={70} cursorClassName="text-accent" startWhenVisible startDelay={500} />
             </p>
             <h2 className="mt-6">{heading}</h2>
           </AnimatedSection>

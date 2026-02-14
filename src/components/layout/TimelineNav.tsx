@@ -58,13 +58,21 @@ export function TimelineNav() {
   }, [])
 
   return (
-    <nav className="pointer-events-none fixed left-0 top-0 z-40 hidden h-screen w-24 flex-col items-center justify-center md:flex">
-      {/* Vertical track */}
-      <div ref={trackRef} className="relative flex flex-col items-center">
+    <nav className="group/sidebar pointer-events-none fixed left-0 top-0 z-40 hidden h-screen w-24 flex-col items-center justify-center md:flex">
+      {/* Hover zone + glow — pointer-events-auto so sidebar receives hover */}
+      <div className="pointer-events-auto absolute inset-0 flex flex-col items-center justify-center">
+        {/* Subtle glow when hovering */}
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-accent/8 to-transparent opacity-0 transition-opacity duration-500 group-hover/sidebar:opacity-100"
+          aria-hidden
+        />
+
+        {/* Vertical track */}
+        <div ref={trackRef} className="relative flex flex-col items-center">
         {/* The connecting line — spans the full dot area */}
         <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2">
           {/* Background line */}
-          <div className="h-full w-full bg-text-dim/25" />
+          <div className="h-full w-full bg-text-dim/25 transition-colors duration-500 group-hover/sidebar:bg-text-dim/50" />
           {/* Progress fill */}
           <div
             className="absolute left-0 top-0 w-full bg-accent/70 transition-all duration-300 ease-luxury"
@@ -81,26 +89,26 @@ export function TimelineNav() {
             <a
               key={section.id}
               href={`#${section.id}`}
-              className="group pointer-events-auto relative flex flex-col items-center py-5"
+              className="group relative flex flex-col items-center py-5"
               aria-label={`Go to ${section.label}`}
             >
-              {/* Dot */}
+              {/* Dot — brightens on sidebar hover when inactive */}
               <div
                 className={`relative z-10 rounded-full transition-all duration-500 ease-luxury ${
                   isActive
                     ? 'h-2.5 w-2.5 bg-accent shadow-lg shadow-accent/40'
                     : isPast
-                      ? 'h-2 w-2 bg-accent/50'
-                      : 'h-1.5 w-1.5 bg-text-dim/40'
+                      ? 'h-2 w-2 bg-accent/50 group-hover/sidebar:bg-accent/70'
+                      : 'h-1.5 w-1.5 bg-text-dim/40 group-hover/sidebar:bg-text-dim/70 group-hover/sidebar:h-2 group-hover/sidebar:w-2'
                 }`}
               />
 
-              {/* Label — appears on hover or when active */}
+              {/* Label — appears on sidebar hover or when active; white on hover for visibility */}
               <span
                 className={`mt-2 whitespace-nowrap font-mono text-[9px] tracking-wider transition-all duration-500 ${
                   isActive
                     ? 'text-accent opacity-100'
-                    : 'text-text-dim opacity-0 group-hover:opacity-70'
+                    : 'text-text-dim opacity-0 group-hover/sidebar:text-text group-hover/sidebar:opacity-80 group-hover:text-text group-hover:opacity-100'
                 }`}
               >
                 {section.label}
@@ -108,6 +116,7 @@ export function TimelineNav() {
             </a>
           )
         })}
+        </div>
       </div>
     </nav>
   )

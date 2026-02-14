@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight, X, Menu } from 'lucide-react'
+import { BlinkCursor } from '@/components/ui/BlinkCursor'
 
 const navLinks = [
   { label: 'Problem', href: '#problem' },
@@ -27,7 +28,7 @@ export function Header({ logoText = 'GST_' }: { logoText?: string }) {
             {logoText.endsWith('_') ? (
               <>
                 {logoText.slice(0, -1)}
-                <span className="animate-blink text-accent">_</span>
+                <BlinkCursor className="text-accent" />
               </>
             ) : (
               logoText

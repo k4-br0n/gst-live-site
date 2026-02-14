@@ -1,6 +1,8 @@
 import { ArrowRight, Check, X } from 'lucide-react'
 import { AnimatedSection } from '@/components/animations/AnimatedSection'
 import { AgitationSection } from '@/components/AgitationSection'
+import { HeroIntro } from '@/components/HeroIntro'
+import { TypingText } from '@/components/TypingText'
 import { ImagePlaceholder } from '@/components/ui/ImagePlaceholder'
 
 /* ------------------------------------------------------------------ */
@@ -122,40 +124,8 @@ export default function HomePage() {
     <>
       {/* ━━ 01 · HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section id="hero" className="section-full">
-        <div className="mx-auto w-full max-w-4xl text-center">
-          <AnimatedSection trigger="load" stagger={0.12} duration={1.2}>
-            <p className="font-mono text-xs tracking-wider text-accent">
-              // FOR_B2B_TECH_COMPANIES
-            </p>
-
-            <h1
-              className="mt-10 leading-[1.1] text-text"
-              style={{ fontSize: 'clamp(2.5rem, 5.5vw, 5.5rem)' }}
-            >
-              <span className="whitespace-nowrap">You&rsquo;ve built something great.</span>
-              <br />
-              <span>
-                Now build the engine
-                <br />
-                to sell it.
-              </span>
-            </h1>
-
-            <div className="mx-auto mt-6 h-px max-w-12 bg-accent/60" aria-hidden />
-
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-text-muted [text-wrap:balance]">
-              I embed with B2B tech firms to build their go-to-market system. Strategy,
-              pages, automation, outreach — I do the thinking and the building.
-            </p>
-          </AnimatedSection>
-
-          <a
-            href="#contact"
-            className="group mt-10 inline-flex items-center gap-3 rounded-sm border border-accent bg-accent px-6 py-3.5 font-mono text-sm tracking-wider text-surface opacity-0 animate-fade-in transition-all duration-500 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/10 [animation-delay:1.5s]"
-          >
-            Book a Discovery Call
-            <ArrowRight className="h-4 w-4 transition-transform duration-700 ease-luxury group-hover:translate-x-1" />
-          </a>
+        <div className="mx-auto w-full max-w-7xl text-center">
+          <HeroIntro />
         </div>
       </section>
 
@@ -163,7 +133,9 @@ export default function HomePage() {
       <section id="vsl" className="section-full">
         <div className="mx-auto w-full max-w-4xl">
           <AnimatedSection animation="fade-up">
-            <p className="font-mono text-xs tracking-wider text-text-dim">// WATCH_FIRST</p>
+            <p className="font-mono text-xs tracking-wider text-accent">
+              <TypingText text="// WATCH_FIRST" speed={70} cursorClassName="text-accent" startWhenVisible startDelay={500} />
+            </p>
             <h2 className="mt-6" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.25rem)' }}>
               The real story behind building a growth engine
             </h2>
@@ -217,7 +189,9 @@ export default function HomePage() {
       <section id="problem" className="section-full">
         <div className="mx-auto w-full max-w-4xl">
           <AnimatedSection animation="fade-up">
-            <p className="font-mono text-xs tracking-wider text-text-dim">// THE_PROBLEM</p>
+            <p className="font-mono text-xs tracking-wider text-accent">
+            <TypingText text="// THE_PROBLEM" speed={70} cursorClassName="text-accent" startWhenVisible startDelay={500} />
+          </p>
             <h2 className="mt-8">
               You&rsquo;ve built something great, but growth has stalled.
             </h2>
@@ -278,7 +252,9 @@ export default function HomePage() {
       <section id="pathway" className="section-full">
         <div className="mx-auto w-full max-w-4xl">
           <AnimatedSection animation="fade-up">
-            <p className="font-mono text-xs tracking-wider text-text-dim">// HOW_IT_WORKS</p>
+            <p className="font-mono text-xs tracking-wider text-accent">
+            <TypingText text="// HOW_IT_WORKS" speed={70} cursorClassName="text-accent" startWhenVisible startDelay={500} />
+          </p>
             <h2 className="mt-8">Three phases. One system.</h2>
           </AnimatedSection>
 
@@ -304,8 +280,8 @@ export default function HomePage() {
       <section id="agitation" className="section-full">
         <div className="mx-auto w-full max-w-4xl">
           <AnimatedSection animation="fade-up">
-            <p className="font-mono text-xs tracking-wider text-text-dim">
-              // THE_REALITY
+            <p className="font-mono text-xs tracking-wider text-accent">
+              <TypingText text="// THE_REALITY" speed={70} cursorClassName="text-accent" startWhenVisible startDelay={500} />
             </p>
             <h2 className="mt-8">You&rsquo;ve already proven your product works.</h2>
           </AnimatedSection>
@@ -331,8 +307,8 @@ export default function HomePage() {
       <section id="about" className="section-full">
         <div className="mx-auto w-full max-w-4xl">
           <AnimatedSection animation="fade-up">
-            <p className="font-mono text-xs tracking-wider text-text-dim">
-              // MEET_YOUR_GUIDE
+            <p className="font-mono text-xs tracking-wider text-accent">
+              <TypingText text="// MEET_YOUR_GUIDE" speed={70} cursorClassName="text-accent" startWhenVisible startDelay={500} />
             </p>
           </AnimatedSection>
 
@@ -377,7 +353,9 @@ export default function HomePage() {
       <section id="proof" className="section-full">
         <div className="mx-auto w-full max-w-4xl">
           <AnimatedSection animation="fade-up">
-            <p className="font-mono text-xs tracking-wider text-text-dim">// CASE_STUDY</p>
+            <p className="font-mono text-xs tracking-wider text-accent">
+            <TypingText text="// CASE_STUDY" speed={70} cursorClassName="text-accent" startWhenVisible startDelay={500} />
+          </p>
             <h2 className="mt-8">From zero system to full engine.</h2>
             <p className="mt-4 max-w-2xl text-text-muted">{caseStudy.context}</p>
           </AnimatedSection>
@@ -469,7 +447,9 @@ export default function HomePage() {
               className="mx-auto mb-8 h-28 w-28"
               alt="Jorge — friendly headshot"
             />
-            <p className="font-mono text-xs tracking-wider text-text-dim">// START_HERE</p>
+            <p className="font-mono text-xs tracking-wider text-accent">
+            <TypingText text="// START_HERE" speed={70} cursorClassName="text-accent" startWhenVisible startDelay={500} />
+          </p>
             <h2 className="mt-8" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
               A growth engine running{' '}
               <span className="text-accent">without you thinking about it.</span>

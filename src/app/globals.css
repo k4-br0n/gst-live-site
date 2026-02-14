@@ -5,6 +5,13 @@
 @layer base {
   html {
     scroll-padding-top: 5rem;
+    /* Hide scrollbar — keeps scroll behavior */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+
+  html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
   }
 
   body {
@@ -76,6 +83,28 @@
 @layer utilities {
   .ease-luxury {
     transition-timing-function: cubic-bezier(0.13, 0.875, 0.455, 0.97);
+  }
+
+  /* Hero second line: masked glow — gradient follows cursor across viewport */
+  .hero-line-glow-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .hero-line-glow-text {
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(20, 184, 166, 0.95) 0%,
+      rgba(7, 131, 117, 0.3) 40%,
+      rgba(20, 184, 166, 0.1) 60%,
+      transparent 70%
+    );
+    background-size: 200% 200%;
+    background-position: 0% 0%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   /* Full-viewport section — one idea per screen */

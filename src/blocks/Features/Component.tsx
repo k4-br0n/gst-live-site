@@ -3,6 +3,7 @@
 import React from 'react'
 import * as LucideIcons from 'lucide-react'
 import { AnimatedSection } from '@/components/animations/AnimatedSection'
+import { TypingText } from '@/components/TypingText'
 
 type Feature = {
   icon?: string
@@ -29,8 +30,8 @@ export function FeaturesBlock({ heading, subtitle, features }: Props) {
     <section className="bg-surface">
       <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-40">
         <AnimatedSection animation="fade-up" duration={1.2}>
-          <p className="font-mono text-sm tracking-wider text-text-dim">
-            // CAPABILITIES
+          <p className="font-mono text-sm tracking-wider text-accent">
+            <TypingText text="// CAPABILITIES" speed={70} cursorClassName="text-accent" startWhenVisible startDelay={500} />
           </p>
           <h2 className="mt-6 max-w-3xl">{heading}</h2>
           {subtitle && (
